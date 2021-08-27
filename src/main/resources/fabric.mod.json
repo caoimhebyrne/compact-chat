@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "compactchat",
+  "version": "${version}",
+  "name": "CompactChat",
+  "description": "Remove duplicate messages from your chat",
+  "authors": [],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/compactchat/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "main": [
+      "dev.cbyrne.compactchat.CompactChat"
+    ]
+  },
+  "mixins": [
+    "CompactChat.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.11.6",
+    "minecraft": "1.17.1"
+  }
+}

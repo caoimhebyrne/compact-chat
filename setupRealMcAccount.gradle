@@ -1,0 +1,81 @@
+/**
+ * To use your real account in the IDE, do the following:
+ * - Create a gradle.properties file in ~/.gradle if there isn't one already
+ *   - ~ is your home directory, which is %userprofile% on Windows and ~ on Linux
+ * - Insert minecraftUser=youremail@example.com and minecraftPass=yourminecraftpassword into that file
+ * - Duplicate the Minecraft Client run configuration in your IDE. Configure it to run the setupRealMcAccount gradle task after build but before run
+ */
+
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            url 'https://libraries.minecraft.net/'
+        }
+    }
+    dependencies {
+        classpath 'com.mojang:authlib:1.5.25'
+    }
+}
+
+import com.google.gson.GsonBuilder
+import com.mojang.authlib.Agent
+import com.mojang.authlib.properties.PropertyMap
+import com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService
+
+task setupRealMcAccount {
+    group = 'ide'
+    doLast {
+        def username = minecraftUser
+        def password = minecraftPass
+        def auth = new YggdrasilAuthenticationService(Proxy.NO_PROXY, '1').createUserAuthentication(Agent.MINECRAFT)
+        auth.username = username
+        auth.password = password
+        auth.logIn()
+        def accessToken = auth.authenticatedToken
+        def uuid = auth.selectedProfile.id.toString().replace('-', '')
+        username = auth.selectedProfile.name
+        def userType = auth.userType.name
+        def userProperties = new GsonBuilder().registerTypeAdapter(PropertyMap, new PropertyMap.Serializer()).create().toJson(auth.userProperties)
+
+        def categories = [:]
+        def category
+        loom.getFiles().getDevLauncherConfig().eachLine { line ->
+            if (!line.empty && Character.isWhitespace(line.charAt(0))) {
+                category << line.trim()
+            } else {
+                category = []
+                categories[line] = category
+            }
+        }
+        def clientArgs = categories['clientArgs']
+
+        for (def i = 0; i < clientArgs.size(); i += 2) {
+            if (clientArgs[i] == '--accessToken' || clientArgs[i] == '--uuid' || clientArgs[i] == '--username' || clientArgs[i] == '--userType' || clientArgs[i] == '--userProperties') {
+                clientArgs.remove(i)
+                clientArgs.remove(i)
+                i -= 2
+            }
+        }
+
+        clientArgs << '--accessToken'
+        clientArgs << accessToken
+        clientArgs << '--uuid'
+        clientArgs << uuid
+        clientArgs << '--username'
+        clientArgs << username
+        clientArgs << '--userType'
+        clientArgs << userType
+        clientArgs << '--userProperties'
+        clientArgs << userProperties
+
+        def pw = loom.getFiles().getDevLauncherConfig().newPrintWriter()
+        for (def ctgy : categories.keySet()) {
+            pw.println ctgy
+            for (def val : categories[ctgy]) {
+                pw.println('\t' + val)
+            }
+        }
+        pw.flush()
+    }
+}
