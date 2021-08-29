@@ -41,7 +41,7 @@ public abstract class ChatHudMixin {
         var messageString = message.getString();
 
         var trimmedString = messageString.trim();
-        if (trimmedString.isEmpty() || trimmedString.isBlank()) return;
+        if (trimmedString.isEmpty() || trimmedString.isBlank() || trimmedString.contains("--------")) return;
 
         var occurrences = compactChat$unmodifiedMessages.get(messageString);
         if (occurrences == null) {
@@ -77,6 +77,11 @@ public abstract class ChatHudMixin {
 
     @Unique
     private Text compactChat$addOccurrencesToText(Text text, int occurrences) {
-        return text.shallowCopy().append(Text.of(" (" + occurrences + ")").shallowCopy().setStyle(Style.EMPTY.withStrikethrough(false).withColor(Formatting.GRAY)));
+        // Some servers will add an extra space at the end of messages.
+        // Instead of trimming this as it may ruin the formatting of the message, we're just going to check if it
+        // ends with a space, and if it does then don't append another space to separate it from the occurrence counter
+        var appendSpace = text.getString().endsWith(" ") ? "" : " ";
+        return text.shallowCopy().append(Text.of(appendSpace + "(" + occurrences + ")")
+            .shallowCopy().setStyle(Style.EMPTY.withStrikethrough(false).withColor(Formatting.GRAY)));
     }
 }
