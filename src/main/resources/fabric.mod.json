@@ -12,6 +12,9 @@
   "entrypoints": {
     "main": [
       "dev.cbyrne.compactchat.CompactChat"
+    ],
+    "modmenu": [
+      "dev.cbyrne.compactchat.modmenu.CompactChatModMenu"
     ]
   },
   "mixins": [
@@ -19,6 +22,7 @@
   ],
   "depends": {
     "fabricloader": ">=0.11.6",
-    "minecraft": "1.17.1"
+    "minecraft": "1.17.1",
+    "spruceui": ">=3.3.0"
   }
 }
