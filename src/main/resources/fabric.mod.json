@@ -24,5 +24,8 @@
     "fabricloader": ">=0.11.6",
     "minecraft": "1.17.1",
     "spruceui": ">=3.3.0"
+  },
+  "suggests": {
+    "modmenu": ">=2.0.0"
   }
 }
