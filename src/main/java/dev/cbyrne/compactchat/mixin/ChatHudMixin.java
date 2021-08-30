@@ -12,7 +12,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.ArrayList;
@@ -62,6 +64,16 @@ public abstract class ChatHudMixin {
 
         addMessage(compactChat$addOccurrencesToText(message, occurrences));
         ci.cancel();
+    }
+
+    /**
+     * Modify the chat history length to be infinite
+     *
+     * @author asbyth
+     */
+    @ModifyConstant(method = "addMessage(Lnet/minecraft/text/Text;IIZ)V", constant = @Constant(intValue = 100))
+    private int modifyChatHistoryLength(int value) {
+        return Integer.MAX_VALUE;
     }
 
     /**
