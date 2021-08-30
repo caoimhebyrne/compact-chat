@@ -1,5 +1,6 @@
 package dev.cbyrne.compactchat.mixin;
 
+import dev.cbyrne.compactchat.config.Configuration;
 import dev.cbyrne.compactchat.util.BetterOrderedText;
 import net.minecraft.client.gui.hud.ChatHud;
 import net.minecraft.client.gui.hud.ChatHudLine;
@@ -73,7 +74,7 @@ public abstract class ChatHudMixin {
      */
     @ModifyConstant(method = "addMessage(Lnet/minecraft/text/Text;IIZ)V", constant = @Constant(intValue = 100))
     private int modifyChatHistoryLength(int value) {
-        return Integer.MAX_VALUE;
+        return Configuration.INSTANCE.infiniteChatHistory ? Integer.MAX_VALUE : 100;
     }
 
     /**
