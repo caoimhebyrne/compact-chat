@@ -1,5 +1,6 @@
 package dev.cbyrne.compactchat.mixin;
 
+import dev.cbyrne.compactchat.CompactChat;
 import dev.cbyrne.compactchat.config.Configuration;
 import dev.cbyrne.compactchat.util.BetterOrderedText;
 import net.minecraft.client.gui.hud.ChatHud;
@@ -19,9 +20,7 @@ import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Mixin(ChatHud.class)
 public abstract class ChatHudMixin {
@@ -29,9 +28,6 @@ public abstract class ChatHudMixin {
         .withStrikethrough(false)
         .withColor(Formatting.GRAY)
         .withFont(Style.DEFAULT_FONT_ID);
-
-    @Unique
-    private final Map<String, Integer> compactChat$unmodifiedMessages = new HashMap<>();
 
     @Shadow
     @Final
@@ -51,9 +47,9 @@ public abstract class ChatHudMixin {
         var trimmedString = messageString.trim();
         if (trimmedString.isEmpty() || trimmedString.isBlank() || trimmedString.contains("--------")) return;
 
-        var occurrences = compactChat$unmodifiedMessages.get(messageString);
+        var occurrences = CompactChat.messageCounters.get(messageString);
         if (occurrences == null) {
-            compactChat$unmodifiedMessages.put(messageString, 1);
+            CompactChat.messageCounters.put(messageString, 1);
             return;
         }
 
@@ -66,7 +62,7 @@ public abstract class ChatHudMixin {
         }
 
         occurrences++;
-        compactChat$unmodifiedMessages.put(messageString, occurrences);
+        CompactChat.messageCounters.put(messageString, occurrences);
 
         addMessage(compactChat$addOccurrencesToText(message, occurrences));
         ci.cancel();

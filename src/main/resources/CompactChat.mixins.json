@@ -6,7 +6,8 @@
   "mixins": [
   ],
   "client": [
-    "ChatHudMixin"
+    "ChatHudMixin",
+    "KeyboardMixin"
   ],
   "injectors": {
     "defaultRequire": 1
