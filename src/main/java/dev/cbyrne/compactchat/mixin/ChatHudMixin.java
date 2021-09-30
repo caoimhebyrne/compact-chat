@@ -25,6 +25,11 @@ import java.util.Map;
 
 @Mixin(ChatHud.class)
 public abstract class ChatHudMixin {
+    private final Style compactChat$occurrencesStyle = Style.EMPTY
+        .withStrikethrough(false)
+        .withColor(Formatting.GRAY)
+        .withFont(Style.DEFAULT_FONT_ID);
+
     @Unique
     private final Map<String, Integer> compactChat$unmodifiedMessages = new HashMap<>();
 
@@ -93,8 +98,12 @@ public abstract class ChatHudMixin {
         // Some servers will add an extra space at the end of messages.
         // Instead of trimming this as it may ruin the formatting of the message, we're just going to check if it
         // ends with a space, and if it does then don't append another space to separate it from the occurrence counter
+
         var appendSpace = text.getString().endsWith(" ") ? "" : " ";
-        return text.shallowCopy().append(Text.of(appendSpace + "(" + occurrences + ")")
-            .shallowCopy().setStyle(Style.EMPTY.withStrikethrough(false).withColor(Formatting.GRAY)));
+        var occurrencesText = Text.of(appendSpace + "(" + occurrences + ")")
+            .shallowCopy()
+            .setStyle(compactChat$occurrencesStyle);
+
+        return text.shallowCopy().append(occurrencesText);
     }
 }
