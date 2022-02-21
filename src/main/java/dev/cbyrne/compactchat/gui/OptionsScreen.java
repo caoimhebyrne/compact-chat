@@ -21,9 +21,9 @@ public class OptionsScreen extends SpruceScreen {
 
         this.parent = parent;
         this.infiniteChatSwitch = new SpruceToggleBooleanOption("compactchat.infiniteChatSwitch",
-            () -> Configuration.INSTANCE.infiniteChatHistory,
-            newValue -> Configuration.INSTANCE.infiniteChatHistory = newValue,
-            new LiteralText("Modify the chat history's length to be infinite instead of 100 messages")
+                () -> Configuration.INSTANCE.infiniteChatHistory,
+                newValue -> Configuration.INSTANCE.infiniteChatHistory = newValue,
+                new LiteralText("Modify the chat history's length to be infinite instead of 100 messages")
         );
     }
 
@@ -36,8 +36,8 @@ public class OptionsScreen extends SpruceScreen {
 
         this.addDrawableChild(list);
         this.addDrawableChild(new SpruceButtonWidget(Position.of(this, this.width / 2 - 155 + 160, this.height - 29), 150,
-            20, SpruceTexts.GUI_DONE,
-            (buttonWidget) -> this.onClose()));
+                20, SpruceTexts.GUI_DONE,
+                (buttonWidget) -> this.onClose()));
     }
 
     @Override

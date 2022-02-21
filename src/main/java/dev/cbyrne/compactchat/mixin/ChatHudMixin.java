@@ -25,9 +25,9 @@ import java.util.List;
 @Mixin(ChatHud.class)
 public abstract class ChatHudMixin {
     private final Style compactChat$occurrencesStyle = Style.EMPTY
-        .withStrikethrough(false)
-        .withColor(Formatting.GRAY)
-        .withFont(Style.DEFAULT_FONT_ID);
+            .withStrikethrough(false)
+            .withColor(Formatting.GRAY)
+            .withFont(Style.DEFAULT_FONT_ID);
 
     @Shadow
     @Final
@@ -97,8 +97,8 @@ public abstract class ChatHudMixin {
 
         var appendSpace = text.getString().endsWith(" ") ? "" : " ";
         var occurrencesText = Text.of(appendSpace + "(" + occurrences + ")")
-            .shallowCopy()
-            .setStyle(compactChat$occurrencesStyle);
+                .shallowCopy()
+                .setStyle(compactChat$occurrencesStyle);
 
         return text.shallowCopy().append(occurrencesText);
     }
