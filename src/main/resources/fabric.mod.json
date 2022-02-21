@@ -4,11 +4,12 @@
   "version": "${version}",
   "name": "CompactChat",
   "description": "Remove duplicate messages from your chat",
-  "authors": [],
+  "authors": ["cbyrne"],
+  "contributors": ["moehreag"],
   "contact": {},
   "license": "MIT",
   "icon": "assets/compactchat/icon.png",
-  "environment": "client",
+  "environment": "*",
   "entrypoints": {
     "main": [
       "dev.cbyrne.compactchat.CompactChat"
@@ -21,11 +22,9 @@
     "CompactChat.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.11.6",
-    "minecraft": "1.17.1",
+    "fabricloader": ">=0.13.2",
+    "fabric": "*",
+    "minecraft": "1.18.1",
     "spruceui": ">=3.3.0"
-  },
-  "suggests": {
-    "modmenu": ">=2.0.0"
   }
 }

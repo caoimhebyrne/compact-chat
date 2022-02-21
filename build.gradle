@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '0.9-SNAPSHOT'
+    id 'fabric-loom' version '0.11-SNAPSHOT'
     id 'maven-publish'
 }
 
@@ -7,22 +7,27 @@ version = project.mod_version
 group = project.maven_group
 
 repositories {
+
     mavenCentral()
     maven { url = "https://maven.gegy.dev" }
     maven { url = "https://maven.terraformersmc.com/" }
 }
 
 dependencies {
+    // To change the versions see the gradle.properties file
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
     modImplementation "dev.lambdaurora:spruceui:${project.spruceui_version}"
 
     modImplementation("com.terraformersmc:modmenu:${project.modmenu_version}") {
         transitive = false
     }
 
-    include "dev.lambdaurora:spruceui:${project.spruceui_version}"
+    modImplementation include ("dev.lambdaurora:spruceui:${project.spruceui_version}")
 }
 
 processResources {
@@ -34,10 +39,13 @@ processResources {
     }
 }
 
-def targetJavaVersion = 16
+def targetJavaVersion = 17
 tasks.withType(JavaCompile).configureEach {
+    // ensure that the encoding is set to UTF-8, no matter what the system default is
+    // this fixes some edge cases with special characters not displaying correctly
+    // see http://yodaconditions.net/blog/fix-for-java-file-encoding-problems-with-gradle.html
+    // If Javadoc is generated, this must be specified in that task too.
     it.options.encoding = "UTF-8"
-
     if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible()) {
         it.options.release = targetJavaVersion
     }
@@ -45,10 +53,13 @@ tasks.withType(JavaCompile).configureEach {
 
 java {
     def javaVersion = JavaVersion.toVersion(targetJavaVersion)
-    if (JavaVersion.current() < javaVersion)
+    if (JavaVersion.current() < javaVersion) {
         toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
-
+    }
     archivesBaseName = project.archives_base_name
+    // Loom will automatically attach sourcesJar to a RemapSourcesJar task and to the "build" task
+    // if it is present.
+    // If you remove this line, sources will not be generated.
     withSourcesJar()
 }
 
@@ -57,5 +68,3 @@ jar {
         rename { "${it}_${project.archivesBaseName}" }
     }
 }
-
-apply from: 'setupRealMcAccount.gradle'
