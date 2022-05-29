@@ -34,10 +34,16 @@ public class OptionsScreen extends SpruceScreen {
         var list = new SpruceOptionListWidget(Position.of(0, 22), this.width, this.height - 35 - 22);
         list.addOptionEntry(this.infiniteChatSwitch, null);
 
+        var doneButton = new SpruceButtonWidget(
+            Position.of(this, 50, this.height - 29),
+            this.width - 100,
+            20,
+            SpruceTexts.GUI_DONE,
+            (buttonWidget) -> this.close()
+        );
+
         this.addDrawableChild(list);
-        this.addDrawableChild(new SpruceButtonWidget(Position.of(this, this.width / 2 - 155 + 160, this.height - 29), 150,
-            20, SpruceTexts.GUI_DONE,
-            (buttonWidget) -> this.close()));
+        this.addDrawableChild(doneButton);
     }
 
     @Override
