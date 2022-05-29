@@ -3,9 +3,14 @@
   "id": "compactchat",
   "version": "${version}",
   "name": "CompactChat",
-  "description": "Remove duplicate messages from your chat",
-  "authors": [],
-  "contact": {},
+  "description": "Clean up your chat by removing duplicate messages!",
+  "authors": ["Conor Byrne"],
+  "contact": {
+    "email": "hello@cbyrne.dev",
+    "sources": "https://github.com/cbyrneee/CompactChat",
+    "homepage": "https://cbyrne.dev",
+    "issues": "https://github.com/cbyrneee/CompactChat/issues"
+  },
   "license": "MIT",
   "icon": "assets/compactchat/icon.png",
   "environment": "client",
