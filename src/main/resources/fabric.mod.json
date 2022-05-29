@@ -21,9 +21,9 @@
     "CompactChat.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.13.3",
-    "minecraft": ">=1.18.1",
-    "spruceui": ">=3.3.0"
+    "fabricloader": ">=0.14.6",
+    "minecraft": "1.18.x",
+    "spruceui": ">=3.3.3"
   },
   "suggests": {
     "modmenu": ">=3.0.1"

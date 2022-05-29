@@ -37,12 +37,13 @@ public class OptionsScreen extends SpruceScreen {
         this.addDrawableChild(list);
         this.addDrawableChild(new SpruceButtonWidget(Position.of(this, this.width / 2 - 155 + 160, this.height - 29), 150,
             20, SpruceTexts.GUI_DONE,
-            (buttonWidget) -> this.onClose()));
+            (buttonWidget) -> this.close()));
     }
 
     @Override
-    public void onClose() {
+    public void close() {
         Configuration.INSTANCE.save();
         MinecraftClient.getInstance().setScreen(this.parent);
+        super.close();
     }
 }
