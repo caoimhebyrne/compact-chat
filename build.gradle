@@ -16,17 +16,9 @@ dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-
-    modImplementation("dev.lambdaurora:spruceui:${project.spruceui_version}") {
-        transitive = false
-    }
-
-    modImplementation("com.terraformersmc:modmenu:${project.modmenu_version}") {
-        transitive = false
-    }
-
-    include "dev.lambdaurora:spruceui:${project.spruceui_version}"
+    modImplementation("com.terraformersmc:modmenu:${project.modmenu_version}") { transitive = false }
 }
 
 processResources {
@@ -47,7 +39,7 @@ java {
 
 jar {
     from("LICENSE") {
-        rename { "${it}_${project.archivesBaseName}"}
+        rename { "${it}_${project.archivesBaseName}" }
     }
 }
 
