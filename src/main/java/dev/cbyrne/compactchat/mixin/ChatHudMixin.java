@@ -97,9 +97,9 @@ public abstract class ChatHudMixin {
 
         var appendSpace = text.getString().endsWith(" ") ? "" : " ";
         var occurrencesText = Text.of(appendSpace + "(" + occurrences + ")")
-            .shallowCopy()
+            .copyContentOnly()
             .setStyle(compactChat$occurrencesStyle);
 
-        return text.shallowCopy().append(occurrencesText);
+        return text.copyContentOnly().append(occurrencesText);
     }
 }

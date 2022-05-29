@@ -10,20 +10,20 @@ import dev.lambdaurora.spruceui.widget.SpruceButtonWidget;
 import dev.lambdaurora.spruceui.widget.container.SpruceOptionListWidget;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
 
 public class OptionsScreen extends SpruceScreen {
     private final Screen parent;
     private final SpruceOption infiniteChatSwitch;
 
     public OptionsScreen(Screen parent) {
-        super(new LiteralText("CompactChat Settings"));
+        super(Text.literal("CompactChat Settings"));
 
         this.parent = parent;
         this.infiniteChatSwitch = new SpruceToggleBooleanOption("compactchat.infiniteChatSwitch",
             () -> Configuration.INSTANCE.infiniteChatHistory,
             newValue -> Configuration.INSTANCE.infiniteChatHistory = newValue,
-            new LiteralText("Modify the chat history's length to be infinite instead of 100 messages")
+            Text.literal("Modify the chat history's length to be infinite instead of 100 messages")
         );
     }
 
