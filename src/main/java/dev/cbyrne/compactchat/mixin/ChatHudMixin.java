@@ -85,7 +85,7 @@ public abstract class ChatHudMixin {
      */
     @Unique
     private void compactChat$removeMessageByText(Text text) {
-        visibleMessages.removeIf((message) -> (new BetterOrderedText(message.getText())).getString().equals(text.getString()));
+        visibleMessages.removeIf((message) -> BetterOrderedText.getString(message.getText()).equals(text.getString()));
         messages.removeIf((message) -> message.getText().getString().equals(text.getString()));
     }
 
