@@ -1,6 +1,8 @@
 package dev.cbyrne.compactchat;
 
 import dev.cbyrne.compactchat.config.Configuration;
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 
 import java.util.HashMap;
@@ -11,6 +13,6 @@ public class CompactChat implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        Configuration.INSTANCE.load();
+        AutoConfig.register(Configuration.class, GsonConfigSerializer::new);
     }
 }

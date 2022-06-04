@@ -75,7 +75,7 @@ public abstract class ChatHudMixin {
      */
     @ModifyConstant(method = "addMessage(Lnet/minecraft/text/Text;IIZ)V", constant = @Constant(intValue = 100))
     private int modifyChatHistoryLength(int value) {
-        return Configuration.INSTANCE.infiniteChatHistory ? Integer.MAX_VALUE : value;
+        return Configuration.getInstance().infiniteChatHistory ? Integer.MAX_VALUE : value;
     }
 
     /**

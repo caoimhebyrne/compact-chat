@@ -1,3 +1,4 @@
 {
-  "compactchat.infiniteChatSwitch": "Infinite Chat History"
+    "text.autoconfig.compactchat.title": "CompactChat Settings",
+    "text.autoconfig.compactchat.option.infiniteChatHistory": "Infinite Chat History"
 }
