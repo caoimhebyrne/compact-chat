@@ -29,8 +29,8 @@
     ],
     "depends": {
         "fabricloader": ">=0.14.6",
-        "minecraft": "1.19.x",
-        "cloth-config": ">=7.0.0"
+        "minecraft": "${baseMinecraftVersion}",
+        "cloth-config": ">=6.2.2"
     },
     "suggests": {
         "modmenu": ">=3.0.1"
