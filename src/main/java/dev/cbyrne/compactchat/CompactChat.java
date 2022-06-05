@@ -2,10 +2,12 @@ package dev.cbyrne.compactchat;
 
 import com.mojang.logging.LogUtils;
 import dev.cbyrne.compactchat.config.Configuration;
-import dev.cbyrne.compactchat.event.ClientJoinWorldCallback;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.client.networking.v1.ClientLoginConnectionEvents;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.network.ClientLoginNetworkHandler;
 import org.slf4j.Logger;
 
 import java.util.HashMap;
@@ -18,11 +20,13 @@ public class CompactChat implements ModInitializer {
     @Override
     public void onInitialize() {
         AutoConfig.register(Configuration.class, GsonConfigSerializer::new);
-        ClientJoinWorldCallback.EVENT.register(() -> {
-            if (!Configuration.getInstance().resetCounterOnWorldJoin) return;
+        ClientLoginConnectionEvents.INIT.register(this::resetMessageCounters);
+    }
 
-            LOGGER.info("Clearing message counters of length " + MESSAGE_COUNTERS.size() + " because the client is joining a new world!");
-            MESSAGE_COUNTERS.clear();
-        });
+    private void resetMessageCounters(ClientLoginNetworkHandler handler, MinecraftClient client) {
+        if (!Configuration.getInstance().resetCounterOnWorldJoin) return;
+
+        LOGGER.info("Clearing message counters of length " + MESSAGE_COUNTERS.size() + " because the client is joining a new world!");
+        MESSAGE_COUNTERS.clear();
     }
 }
