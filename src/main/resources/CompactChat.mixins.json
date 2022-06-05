@@ -7,7 +7,8 @@
   ],
   "client": [
     "ChatHudMixin",
-    "KeyboardMixin"
+    "KeyboardMixin",
+    "MinecraftClientMixin"
   ],
   "injectors": {
     "defaultRequire": 1
