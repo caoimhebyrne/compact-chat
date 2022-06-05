@@ -1,1 +1,1 @@
-net.minecraft.text.Text copyContentOnly() net.minecraft.text.Text shallowCopy()
+net.minecraft.text.Text copyContentOnly() shallowCopy()
