@@ -7,6 +7,6 @@ configurations.register("compileClasspath")
 
 preprocess {
     "1.19"(11900, "yarn") {
-        "1.18.2"(11802, "yarn")
+        "1.18.2"(11802, "yarn", file("versions/1.19-1.18.2.txt"))
     }
 }
