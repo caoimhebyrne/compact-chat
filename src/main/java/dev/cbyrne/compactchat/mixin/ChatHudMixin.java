@@ -47,9 +47,9 @@ public abstract class ChatHudMixin {
         var trimmedString = messageString.trim();
         if (trimmedString.isEmpty() || trimmedString.isBlank() || trimmedString.contains("--------")) return;
 
-        var occurrences = CompactChat.messageCounters.get(messageString);
+        var occurrences = CompactChat.MESSAGE_COUNTERS.get(messageString);
         if (occurrences == null) {
-            CompactChat.messageCounters.put(messageString, 1);
+            CompactChat.MESSAGE_COUNTERS.put(messageString, 1);
             return;
         }
 
@@ -62,7 +62,7 @@ public abstract class ChatHudMixin {
         }
 
         occurrences++;
-        CompactChat.messageCounters.put(messageString, occurrences);
+        CompactChat.MESSAGE_COUNTERS.put(messageString, occurrences);
 
         addMessage(compactChat$addOccurrencesToText(message, occurrences));
         ci.cancel();

@@ -1,4 +1,5 @@
 {
     "text.autoconfig.compactchat.title": "CompactChat Settings",
-    "text.autoconfig.compactchat.option.infiniteChatHistory": "Infinite Chat History"
+    "text.autoconfig.compactchat.option.infiniteChatHistory": "Infinite chat history",
+    "text.autoconfig.compactchat.option.resetCounterOnWorldJoin": "Reset message counter on world join"
 }

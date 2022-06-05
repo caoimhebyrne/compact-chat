@@ -11,6 +11,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class KeyboardMixin {
     @Inject(method = "processF3", at = @At(value = "INVOKE", shift = At.Shift.AFTER, target = "Lnet/minecraft/client/gui/hud/ChatHud;clear(Z)V"))
     private void compactChat$resetMessageCounters(int key, CallbackInfoReturnable<Boolean> cir) {
-        CompactChat.messageCounters.clear();
+        CompactChat.MESSAGE_COUNTERS.clear();
     }
 }
