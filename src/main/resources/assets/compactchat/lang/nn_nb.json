@@ -1,0 +1,6 @@
+{
+    "text.autoconfig.compactchat.title": "CompactChat Innstillinger",
+    "text.autoconfig.compactchat.option.infiniteChatHistory": "Uendelig chat historikk",
+    "text.autoconfig.compactchat.option.clearChatHistoryOnWorldJoin": "Fjern chat historikk når man går inn i en verden",
+    "text.autoconfig.compactchat.option.resetCounterOnWorldJoin": "Tilbakestill melding teller når man går inn i en verden"
+}
