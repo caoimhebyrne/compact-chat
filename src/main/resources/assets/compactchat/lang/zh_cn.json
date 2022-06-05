@@ -1,3 +1,6 @@
 {
-    "text.autoconfig.compactchat.option.infiniteChatHistory": "聊天记录无限长度"
+    "text.autoconfig.compactchat.title": "紧凑聊天设置",
+    "text.autoconfig.compactchat.option.infiniteChatHistory": "聊天记录长度无限",
+    "text.autoconfig.compactchat.option.clearChatHistoryOnWorldJoin": "清除加入世界消息的聊天记录",
+    "text.autoconfig.compactchat.option.resetCounterOnWorldJoin": "重置加入世界消息的计数器"
 }
