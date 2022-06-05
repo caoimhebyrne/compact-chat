@@ -21,6 +21,7 @@ repositories {
     mavenCentral()
     maven("https://maven.terraformersmc.com/")
     maven("https://maven.shedaniel.me/")
+    maven("https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1")
 }
 
 dependencies {
@@ -29,6 +30,7 @@ dependencies {
     val fabricVersion: String by project
     val modmenuVersion: String by project
     val clothConfigVersion: String by project
+    val devauthVersion: String by project
 
     minecraft("com.mojang:minecraft:$minecraftVersion")
     mappings("net.fabricmc:yarn:$yarnMappings:v2")
@@ -37,6 +39,9 @@ dependencies {
 
     modImplementation("com.terraformersmc:modmenu:$modmenuVersion") { exclude("net.fabricmc.fabric-api") }
     modApi("me.shedaniel.cloth:cloth-config-fabric:$clothConfigVersion") { exclude("net.fabricmc.fabric-api") }
+
+    // Used for authentication in the development environment
+    modRuntimeOnly("me.djtheredstoner:DevAuth-fabric:${devauthVersion}")
 }
 
 tasks {
