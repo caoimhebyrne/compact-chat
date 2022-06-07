@@ -53,16 +53,22 @@ public abstract class ChatHudMixin {
         }
 
         // Return if the previous message was not the same as this one
-        if (Configuration.getInstance().onlyCompactConsecutiveMessages && !messages.isEmpty()) {
+        if (Configuration.getInstance().onlyCompactConsecutiveMessages) {
+            if (messages.isEmpty()) return;
+
             var previousMessage = messages.get(0).getText();
             if (!previousMessage.getString().equals(messageString)) return;
-        }
 
-        // Remove existing message(s) from chat
-        for (ChatHudLine<Text> chatHudLine : new ArrayList<>(messages)) {
-            var text = chatHudLine.getText();
-            if (text.getString().equals(messageString)) {
-                compactChat$removeMessageByText(text);
+            // Since we know that this was the previous message, we don't have to bother filtering for it
+            messages.remove(0);
+            visibleMessages.remove(0);
+        } else {
+            // Remove existing message(s) from chat
+            for (ChatHudLine<Text> chatHudLine : new ArrayList<>(messages)) {
+                var text = chatHudLine.getText();
+                if (text.getString().equals(messageString)) {
+                    compactChat$removeMessageByText(text);
+                }
             }
         }
 
