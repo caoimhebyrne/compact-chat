@@ -52,6 +52,12 @@ public abstract class ChatHudMixin {
             return;
         }
 
+        // Return if the previous message was not the same as this one
+        if (Configuration.getInstance().onlyCompactConsecutiveMessages && !messages.isEmpty()) {
+            var previousMessage = messages.get(0).getText();
+            if (!previousMessage.getString().equals(messageString)) return;
+        }
+
         // Remove existing message(s) from chat
         for (ChatHudLine<Text> chatHudLine : new ArrayList<>(messages)) {
             var text = chatHudLine.getText();

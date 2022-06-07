@@ -15,6 +15,7 @@ public class Configuration implements ConfigData {
     public boolean infiniteChatHistory = true;
     public boolean clearChatHistoryOnWorldJoin = true;
     public boolean resetCounterOnWorldJoin = false;
+    public boolean onlyCompactConsecutiveMessages = false;
 
     public static Configuration getInstance() {
         if (INSTANCE == null) {
