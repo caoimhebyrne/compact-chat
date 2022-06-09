@@ -1,3 +1,7 @@
 {
-    "text.autoconfig.compactchat.option.infiniteChatHistory": "Бесконечная история чата"
+    "text.autoconfig.compactchat.title": "Настройки CompactChat",
+    "text.autoconfig.compactchat.option.infiniteChatHistory": "Бесконечная история чата",
+    "text.autoconfig.compactchat.option.clearChatHistoryOnWorldJoin": "Очистка истории ввода при присоединении к миру",
+    "text.autoconfig.compactchat.option.resetCounterOnWorldJoin": "Сброс счётчиков сообщений при присоединении к миру",
+    "text.autoconfig.compactchat.option.onlyCompactConsecutiveMessages": "Сокращение только непрервыно повторяющихся сообщений"
 }
