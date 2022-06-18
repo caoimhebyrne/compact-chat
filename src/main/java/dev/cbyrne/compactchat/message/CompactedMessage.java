@@ -36,7 +36,14 @@ public class CompactedMessage {
             .copyContentOnly()
             .setStyle(OCCURRENCES_STYLE);
 
-        return originalText.copyContentOnly().append(occurrencesText);
+        // Command results can be weird, and don't return the content on `copyContentOnly`.
+        // If `copyContentOnly` is empty, let's try `copy`!
+        var content = originalText.copyContentOnly();
+        if (content.getString().isEmpty()) {
+            content = originalText.copy();
+        }
+
+        return content.append(occurrencesText);
     }
 
     public boolean equals(Text text) {
