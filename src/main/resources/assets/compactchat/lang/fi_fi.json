@@ -1,7 +1,0 @@
-{
-    "text.autoconfig.compactchat.title": "CompactChat Asetukset",
-    "text.autoconfig.compactchat.option.infiniteChatHistory": "Loputon viestihistoria",
-    "text.autoconfig.compactchat.option.clearChatHistoryOnWorldJoin": "Tyhjennä viestihistoria maailmaan liityttäessä",
-    "text.autoconfig.compactchat.option.resetCounterOnWorldJoin": "Nollaa viestilaskuri maailmaan liityttäessä",
-    "text.autoconfig.compactchat.option.onlyCompactConsecutiveMessages": "Tiivistä vain peräkkäiset viestit"
-}

@@ -1,7 +1,0 @@
-{
-    "text.autoconfig.compactchat.title": "CompactChat instellingen",
-    "text.autoconfig.compactchat.option.infiniteChatHistory": "Oneindige chatgeschiedenis",
-    "text.autoconfig.compactchat.option.clearChatHistoryOnWorldJoin": "Wis chatgeschiedenis bij het toetreden van een wereld",
-    "text.autoconfig.compactchat.option.resetCounterOnWorldJoin": "Reset berichtteller bij het toetreden van een wereld",
-    "text.autoconfig.compactchat.option.onlyCompactConsecutiveMessages": "Verdicht alleen opeenvolgende berichten"
-}

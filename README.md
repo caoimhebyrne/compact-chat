@@ -1,19 +1,12 @@
-# CompactChat for Fabric
+## Compact Chat
 
-![image](./.github/preview.gif)
+**Compact Chat** is a mod for [Fabric](https://fabricmc.net) which removes duplicate messages from your chat.
 
-**CompactChat is a mod which will clean up your minecraft chat.**
+### Installation
 
-If a message is sent twice, the previous message will be removed, and the newer one will have the number of occurrences appended to it.
+> **Note**
+> This mod is currently being rewritten for 1.19.2+. The versions previously available are for 1.19.1 and lower.
 
-*By default, CompactChat will automatically set your chat history's length to be infinite. This can be disabled via a config screen which can be opened with ModMenu.*
+[![Download on Modrinth](https://github.com/Prospector/badges/blob/master/modrinth-badge-72h-padded.png?raw=true)](https://modrinth.com/mod/compact-chat)
 
-[<img src="https://inv.wtf/widget/cbyrne" width="500" alt="Discord Widget"/>](https://inv.wtf/cbyrne)
-
-## Download
-
-Get the latest download from the [releases page](https://github.com/cbyrneee/CompactChat/releases).
-
-## License
-
-CompactChat uses the [MIT](https://choosealicense.com/licenses/mit/) license
+or, download it from the [releases page](https://github.com/cbyrneee/compact-chat/releases).

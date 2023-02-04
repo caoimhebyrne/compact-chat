@@ -1,38 +1,34 @@
 {
-    "schemaVersion": 1,
-    "id": "compactchat",
-    "version": "${version}",
-    "name": "CompactChat",
-    "description": "Clean up your chat by removing duplicate messages!",
-    "authors": [
-        "Conor Byrne"
-    ],
-    "contact": {
-        "email": "hello@cbyrne.dev",
-        "sources": "https://github.com/cbyrneee/CompactChat",
-        "homepage": "https://cbyrne.dev",
-        "issues": "https://github.com/cbyrneee/CompactChat/issues"
-    },
-    "license": "MIT",
-    "icon": "assets/compactchat/icon.png",
-    "environment": "client",
-    "entrypoints": {
-        "main": [
-            "dev.cbyrne.compactchat.CompactChat"
-        ],
-        "modmenu": [
-            "dev.cbyrne.compactchat.modmenu.CompactChatModMenu"
-        ]
-    },
-    "mixins": [
-        "CompactChat.mixins.json"
-    ],
-    "depends": {
-        "fabricloader": ">=0.14.6",
-        "minecraft": "${baseMinecraftVersion}",
-        "cloth-config": ">=6.2.2"
-    },
-    "suggests": {
-        "modmenu": ">=3.0.1"
-    }
+  "schemaVersion": 1,
+  "id": "compact-chat",
+  "version": "${version}",
+  "name": "Compact Chat",
+  "description": "Clean up your chat by removing duplicate messages!",
+  "authors": [
+    "Caoimhe Byrne"
+  ],
+  "contact": {
+    "homepage": "https://modrinth.com/mod/compact-chat",
+    "sources": "https://github.com/cbyrneee/compact-chat",
+    "issues": "https://github.com/cbyrneee/compact-chat/issues"
+  },
+  "license": "MIT",
+  "icon": "assets/compact-chat/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "dev.caoimhe.compactchat.CompactChatClient"
+    ]
+  },
+  "mixins": [
+    "compact-chat.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.14",
+    "minecraft": "~1.19.3",
+    "java": ">=17"
+  },
+  "recommends": {
+    "modmenu": ">=5.0.2"
+  }
 }
