@@ -15,30 +15,37 @@ public class FabricLoaderUtil {
         "minecraft"
     );
 
+    /**
+     * Returns a random parent mod's name (not a child) that's not in {@link #EXCLUDED_RANDOM_IDS}.
+     * If there are no available mods, or an exception occurs, Fabric Loader will be returned.
+     */
     public static String getRandomModName() {
-        var mods = FabricLoader.getInstance().getAllMods();
-        var names = mods.stream()
-            .map(it -> {
-                // We don't want to include mods which are children of others, they are usually unknown to the user.
-                if (it.getContainingMod().isPresent()) {
-                    return null;
-                }
-
-                var metadata = it.getMetadata();
-                if (EXCLUDED_RANDOM_IDS.contains(metadata.getId().toLowerCase(Locale.ROOT))) {
-                    return null;
-                }
-
-                return metadata.getName();
-            })
-            .filter(Objects::nonNull)
-            .collect(Collectors.toList());
-
         try {
+            var mods = FabricLoader.getInstance().getAllMods();
+            var names = mods.stream()
+                .map(it -> {
+                    // We don't want to include mods which are children of others, they are usually unknown to the user.
+                    if (it.getContainingMod().isPresent()) {
+                        return null;
+                    }
+
+                    var metadata = it.getMetadata();
+                    if (EXCLUDED_RANDOM_IDS.contains(metadata.getId().toLowerCase(Locale.ROOT))) {
+                        return null;
+                    }
+
+                    return metadata.getName();
+                })
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
+
             return CollectionUtil.randomFrom(names);
         } catch (Exception e) {
-            // We may not have any mods that aren't excluded to pick from
-            return "";
+            // We may not have any mods that aren't excluded to pick from, we also don't want this cosmetic operation
+            // to have any impact, hence why we try catch the whole thing.
+
+            // Let's just default to Fabric Loader
+            return "Fabric Loader";
         }
     }
 }
