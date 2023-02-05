@@ -1,3 +1,20 @@
 {
-  "text.autoconfig.compact-chat.title": "Compact Chat Options"
+  "text.autoconfig.compact-chat.title": "Compact Chat Options",
+
+  "text.autoconfig.compact-chat.category.default": "General Settings",
+
+  "text.autoconfig.compact-chat.option.onlyCompactConsecutiveMessages": "Only compact consecutive messages",
+  "text.autoconfig.compact-chat.option.onlyCompactConsecutiveMessages.@Tooltip[0]": "Messages will only be compacted if",
+  "text.autoconfig.compact-chat.option.onlyCompactConsecutiveMessages.@Tooltip[1]": "they are sent directly after each other.",
+  "text.autoconfig.compact-chat.option.onlyCompactConsecutiveMessages.@Tooltip[2]": " ",
+  "text.autoconfig.compact-chat.option.onlyCompactConsecutiveMessages.@Tooltip[3]": "Changing this setting will clear chat history!",
+  "text.autoconfig.compact-chat.option.onlyCompactConsecutiveMessages.@Tooltip[4]": " ",
+  "text.autoconfig.compact-chat.option.onlyCompactConsecutiveMessages.@Tooltip[5]": "Example when enabled: ",
+  "text.autoconfig.compact-chat.option.onlyCompactConsecutiveMessages.@Tooltip[6]": "  <Player>: hi",
+  "text.autoconfig.compact-chat.option.onlyCompactConsecutiveMessages.@Tooltip[7]": "  <Player>: hey",
+  "text.autoconfig.compact-chat.option.onlyCompactConsecutiveMessages.@Tooltip[8]": "  <Player>: hi <- Will not be compacted!",
+  "text.autoconfig.compact-chat.option.onlyCompactConsecutiveMessages.@Tooltip[9]": "Example when disabled (default):",
+  "text.autoconfig.compact-chat.option.onlyCompactConsecutiveMessages.@Tooltip[10]": "  <Player>: hi",
+  "text.autoconfig.compact-chat.option.onlyCompactConsecutiveMessages.@Tooltip[11]": "  <Player>: hey",
+  "text.autoconfig.compact-chat.option.onlyCompactConsecutiveMessages.@Tooltip[12]": "  <Player>: hi <- Will be compacted!"
 }

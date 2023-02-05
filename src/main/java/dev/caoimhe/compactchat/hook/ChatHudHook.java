@@ -1,5 +1,6 @@
 package dev.caoimhe.compactchat.hook;
 
+import dev.caoimhe.compactchat.config.Configuration;
 import dev.caoimhe.compactchat.core.ChatMessage;
 import dev.caoimhe.compactchat.hook.extensions.IChatHudExt;
 import net.minecraft.text.Text;
@@ -19,13 +20,20 @@ public class ChatHudHook {
     private final HashMap<Text, ChatMessage> chatMessages = new HashMap<>();
 
     /**
+     * The previous message received by the client
+     */
+    private Text previousMessage = null;
+
+    /**
      * Returns the modified (if applicable) chat message.
      */
     public Text compactChatMessage(Text message) {
         var chatMessage = this.chatMessages.get(message);
+        var previousMessage = this.previousMessage;
+        this.previousMessage = message;
 
-        // This chat message has not occurred before
-        if (chatMessage == null) {
+        var shouldIgnoreNonConsecutiveMessage = Configuration.instance().onlyCompactConsecutiveMessages && !message.equals(previousMessage);
+        if (chatMessage == null || shouldIgnoreNonConsecutiveMessage) {
             this.chatMessages.put(message, new ChatMessage());
             return message;
         }
