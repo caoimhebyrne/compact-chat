@@ -13,6 +13,7 @@ group = project.maven_group
 repositories {
     maven { url "https://maven.terraformersmc.com/releases/" } // ModMenu
     maven { url = "https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1" } // DevAuth
+    maven { url "https://maven.shedaniel.me/" } // Cloth Config
 }
 
 loom {
@@ -28,7 +29,10 @@ dependencies {
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    // Not a dependency, but it is recommended
+    // Required dependencies
+    modApi "me.shedaniel.cloth:cloth-config-fabric:${project.clothconfig_version}"
+
+    // Recommended mods
     modApi "com.terraformersmc:modmenu:${project.modmenu_version}"
 
     // Used for logging in to accounts in dev

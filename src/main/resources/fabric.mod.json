@@ -18,6 +18,9 @@
   "entrypoints": {
     "client": [
       "dev.caoimhe.compactchat.CompactChatClient"
+    ],
+    "modmenu": [
+      "dev.caoimhe.compactchat.integration.ModMenuIntegration"
     ]
   },
   "mixins": [
@@ -26,7 +29,8 @@
   "depends": {
     "fabricloader": ">=0.14.14",
     "minecraft": "~1.19.2",
-    "java": ">=17"
+    "java": ">=17",
+    "cloth-config": ">=8.2.88"
   },
   "recommends": {
     "modmenu": ">=4.1.2"
