@@ -41,7 +41,7 @@ public class ChatHudHook {
      * Removes a message (and its occurrences modifications) from the Chat HUD.
      */
     public void removeMessage(Text originalMessage, ChatMessage message) {
-        var iterator = this.chatHud.getMessages().listIterator();
+        var iterator = this.chatHud.compactchat$getMessages().listIterator();
         while (iterator.hasNext()) {
             var chatHudLine = iterator.next();
 
@@ -51,7 +51,7 @@ public class ChatHudHook {
 
             if (contentWithoutOccurrences.equals(textWithoutOccurrences)) {
                 iterator.remove();
-                this.chatHud.refreshMessages();
+                this.chatHud.compactchat$refreshMessages();
 
                 return;
             }

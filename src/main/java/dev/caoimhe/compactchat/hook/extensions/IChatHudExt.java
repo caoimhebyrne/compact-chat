@@ -1,15 +1,14 @@
 package dev.caoimhe.compactchat.hook.extensions;
 
-import dev.caoimhe.compactchat.core.ChatMessage;
 import net.minecraft.client.gui.hud.ChatHudLine;
-import net.minecraft.text.Text;
 
 import java.util.List;
 
 /**
- * Bootleg Kotlin extension functions
+ * Bootleg Kotlin extension functions...
+ * These methods are prefixed with `compactchat$` to avoid mixin conflicts
  */
 public interface IChatHudExt {
-    List<ChatHudLine> getMessages();
-    void refreshMessages();
+    List<ChatHudLine> compactchat$getMessages();
+    void compactchat$refreshMessages();
 }

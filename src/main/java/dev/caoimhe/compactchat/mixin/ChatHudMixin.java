@@ -44,21 +44,18 @@ public abstract class ChatHudMixin implements IChatHudExt {
         return this.compactchat$hook.compactChatMessage(message);
     }
 
-    @Inject(
-        method = "clear",
-        at = @At("RETURN")
-    )
+    @Inject(method = "clear", at = @At("RETURN"))
     private void compactchat$onClear(boolean clearHistory, CallbackInfo ci) {
         this.compactchat$hook.onClear();
     }
 
     @Override
-    public List<ChatHudLine> getMessages() {
+    public List<ChatHudLine> compactchat$getMessages() {
         return this.messages;
     }
 
     @Override
-    public void refreshMessages() {
+    public void compactchat$refreshMessages() {
         this.refresh();
     }
 }
