@@ -26,7 +26,7 @@ public class ChatMessage {
     /**
      * The amount of times this message has occurred.
      */
-    private int occurrences = 0;
+    private int occurrences = 1;
 
     /**
      * Increments the occurrences counter.
@@ -39,7 +39,7 @@ public class ChatMessage {
      * Returns modifiedText appended with the amount of occurences.
      */
     public Text modifiedText(Text unmodifiedText) {
-        if (occurrences == 0) {
+        if (occurrences == 1) {
             return unmodifiedText;
         }
 
