@@ -12,7 +12,9 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.List;
 
@@ -39,7 +41,15 @@ public abstract class ChatHudMixin implements IChatHudExt {
             return message;
         }
 
-        return compactchat$hook.compactChatMessage(message);
+        return this.compactchat$hook.compactChatMessage(message);
+    }
+
+    @Inject(
+        method = "clear",
+        at = @At("RETURN")
+    )
+    private void compactchat$onClear(boolean clearHistory, CallbackInfo ci) {
+        this.compactchat$hook.onClear();
     }
 
     @Override

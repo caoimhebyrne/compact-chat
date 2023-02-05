@@ -38,7 +38,7 @@ public class ChatHudHook {
     }
 
     /**
-     * Removes a message (and its occurances modifications) from the Chat HUD.
+     * Removes a message (and its occurrences modifications) from the Chat HUD.
      */
     public void removeMessage(Text originalMessage, ChatMessage message) {
         var iterator = this.chatHud.getMessages().listIterator();
@@ -56,5 +56,13 @@ public class ChatHudHook {
                 return;
             }
         }
+    }
+
+    /**
+     * Called when the Chat HUD is clearing its messages.
+     * Since all chat messages aren't visible anymore, we should clear their {@link ChatMessage} too.
+     */
+    public void onClear() {
+        chatMessages.clear();
     }
 }
