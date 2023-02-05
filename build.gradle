@@ -12,6 +12,7 @@ group = project.maven_group
 
 repositories {
     maven { url "https://maven.terraformersmc.com/releases/" } // ModMenu
+    maven { url = "https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1" } // DevAuth
 }
 
 loom {
@@ -29,6 +30,9 @@ dependencies {
 
     // Not a dependency, but it is recommended
     modApi "com.terraformersmc:modmenu:${project.modmenu_version}"
+
+    // Used for logging in to accounts in dev
+    modRuntimeOnly "me.djtheredstoner:DevAuth-fabric:${project.devauth_version}"
 }
 
 processResources {
