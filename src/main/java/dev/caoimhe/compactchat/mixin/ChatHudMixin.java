@@ -49,7 +49,7 @@ public abstract class ChatHudMixin implements IChatHudExt {
 
     @Inject(method = "clear", at = @At("RETURN"))
     private void compactchat$onClear(boolean clearHistory, CallbackInfo ci) {
-        this.compactchat$hook.onClear();
+        this.compactchat$hook.reset();
     }
 
     @Override

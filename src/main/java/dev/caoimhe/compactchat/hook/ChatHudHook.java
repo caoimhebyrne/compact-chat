@@ -9,10 +9,12 @@ import java.util.HashMap;
 
 public class ChatHudHook {
     private final IChatHudExt chatHud;
+
     /**
      * A historical map of all chat messages sent, mapped to their wrapper class
      */
     private final HashMap<Text, ChatMessage> chatMessages = new HashMap<>();
+
     /**
      * The previous message received by the client
      */
@@ -73,7 +75,7 @@ public class ChatHudHook {
      * Called when the Chat HUD is clearing its messages.
      * Since all chat messages aren't visible anymore, we should clear their {@link ChatMessage} too.
      */
-    public void onClear() {
+    public void reset() {
         chatMessages.clear();
     }
 }
