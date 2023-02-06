@@ -1,6 +1,6 @@
 package dev.caoimhe.compactchat.hook;
 
-import dev.caoimhe.compactchat.config.Configuration;
+import dev.caoimhe.compactchat.CompactChatClient;
 import dev.caoimhe.compactchat.core.ChatMessage;
 import dev.caoimhe.compactchat.hook.extensions.IChatHudExt;
 import net.minecraft.text.Text;
@@ -9,20 +9,19 @@ import java.util.HashMap;
 
 public class ChatHudHook {
     private final IChatHudExt chatHud;
-
-    public ChatHudHook(IChatHudExt chatHud) {
-        this.chatHud = chatHud;
-    }
-
     /**
      * A historical map of all chat messages sent, mapped to their wrapper class
      */
     private final HashMap<Text, ChatMessage> chatMessages = new HashMap<>();
-
     /**
      * The previous message received by the client
      */
     private Text previousMessage = null;
+
+    public ChatHudHook(IChatHudExt chatHud) {
+        this.chatHud = chatHud;
+        CompactChatClient.configuration().subscribeToOnlyCompactConsecutiveMessages(this::onOnlyClearConsecutiveMessagesChange);
+    }
 
     /**
      * Returns the modified (if applicable) chat message.
@@ -32,7 +31,7 @@ public class ChatHudHook {
         var previousMessage = this.previousMessage;
         this.previousMessage = message;
 
-        var shouldIgnoreNonConsecutiveMessage = Configuration.instance().onlyCompactConsecutiveMessages && !message.equals(previousMessage);
+        var shouldIgnoreNonConsecutiveMessage = CompactChatClient.configuration().onlyCompactConsecutiveMessages() && !message.equals(previousMessage);
         if (chatMessage == null || shouldIgnoreNonConsecutiveMessage) {
             this.chatMessages.put(message, new ChatMessage());
             return message;
@@ -72,5 +71,12 @@ public class ChatHudHook {
      */
     public void onClear() {
         chatMessages.clear();
+    }
+
+    /**
+     * Toggled when {@link dev.caoimhe.compactchat.config.ConfigurationModel#onlyCompactConsecutiveMessages} is changed.
+     */
+    private void onOnlyClearConsecutiveMessagesChange(boolean newValue) {
+        chatHud.compactchat$clear();
     }
 }

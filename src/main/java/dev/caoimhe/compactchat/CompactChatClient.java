@@ -1,5 +1,6 @@
 package dev.caoimhe.compactchat;
 
+import dev.caoimhe.compactchat.config.Configuration;
 import dev.caoimhe.compactchat.util.CollectionUtil;
 import dev.caoimhe.compactchat.util.FabricLoaderUtil;
 import net.fabricmc.api.ClientModInitializer;
@@ -9,7 +10,8 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 
 public class CompactChatClient implements ClientModInitializer {
-    public static final Logger LOGGER = LoggerFactory.getLogger("compact-chat");
+    private static final Logger LOGGER = LoggerFactory.getLogger("compact-chat");
+    private static final Configuration CONFIGURATION = Configuration.createAndLoad();
 
     private static final List<String> STARTUP_MESSAGES = CollectionUtil.makeArrayList(
         "Helloooo! Is anyone out there?",
@@ -18,6 +20,10 @@ public class CompactChatClient implements ClientModInitializer {
         "Get in the mod loading line punk, {RANDOM_MOD}!",
         "zZz zZz zZ- oh, hey! I'm awake, I'm awake..."
     );
+
+    public static Configuration configuration() {
+        return CONFIGURATION;
+    }
 
     @Override
     public void onInitializeClient() {

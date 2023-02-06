@@ -30,6 +30,9 @@ public abstract class ChatHudMixin implements IChatHudExt {
     @Shadow
     protected abstract void refresh();
 
+    @Shadow
+    public abstract void clear(boolean clearHistory);
+
     @ModifyVariable(
         method = "addMessage(Lnet/minecraft/text/Text;Lnet/minecraft/network/message/MessageSignatureData;ILnet/minecraft/client/gui/hud/MessageIndicator;Z)V",
         at = @At("HEAD"),
@@ -57,5 +60,10 @@ public abstract class ChatHudMixin implements IChatHudExt {
     @Override
     public void compactchat$refreshMessages() {
         this.refresh();
+    }
+
+    @Override
+    public void compactchat$clear() {
+        this.clear(false);
     }
 }

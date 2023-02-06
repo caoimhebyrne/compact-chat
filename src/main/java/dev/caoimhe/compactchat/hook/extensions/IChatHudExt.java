@@ -11,4 +11,5 @@ import java.util.List;
 public interface IChatHudExt {
     List<ChatHudLine> compactchat$getMessages();
     void compactchat$refreshMessages();
+    void compactchat$clear();
 }
