@@ -20,7 +20,11 @@ public class ChatHudHook {
 
     public ChatHudHook(IChatHudExt chatHud) {
         this.chatHud = chatHud;
-        CompactChatClient.configuration().subscribeToOnlyCompactConsecutiveMessages(this::onOnlyClearConsecutiveMessagesChange);
+
+        // Clear chat history when `onlyCompactConsecutiveMessages` has been toggled.
+        CompactChatClient
+            .configuration()
+            .subscribeToOnlyCompactConsecutiveMessages(value -> chatHud.compactchat$clear());
     }
 
     /**
@@ -71,12 +75,5 @@ public class ChatHudHook {
      */
     public void onClear() {
         chatMessages.clear();
-    }
-
-    /**
-     * Toggled when {@link dev.caoimhe.compactchat.config.ConfigurationModel#onlyCompactConsecutiveMessages} is changed.
-     */
-    private void onOnlyClearConsecutiveMessagesChange(boolean newValue) {
-        chatHud.compactchat$clear();
     }
 }
