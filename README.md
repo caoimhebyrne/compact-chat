@@ -5,7 +5,7 @@
 ### Installation
 
 > **Note**
-> This mod is currently being rewritten for 1.19.2+. The versions previously available are for 1.19.1 and lower.
+> This mod is currently being rewritten for 1.19.1+. The versions previously available are for 1.19 and lower.
 
 [![Download on Modrinth](https://github.com/Prospector/badges/blob/master/modrinth-badge-72h-padded.png?raw=true)](https://modrinth.com/mod/compact-chat)
 
