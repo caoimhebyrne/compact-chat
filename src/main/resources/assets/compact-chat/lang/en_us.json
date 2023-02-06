@@ -2,5 +2,8 @@
   "text.config.compact-chat.title": "Compact Chat Options",
   
   "text.config.compact-chat.option.onlyCompactConsecutiveMessages": "Only compact consecutive messages",
-  "text.config.compact-chat.option.onlyCompactConsecutiveMessages.tooltip": "Messages will only be compacted if\nthey are sent directly after each other.\n\nChanging this setting will clear chat history!\n\nExample when enabled:\n  <Player>: hi\n  <Player>: hey\n  <Player>: hi <- Will not be compacted\nExample when disabled (default):\n  <Player>: hi\n  <Player>: hey\n  <Player>: hi <- Will be compacted"
+  "text.config.compact-chat.option.onlyCompactConsecutiveMessages.tooltip": "Messages will only be compacted if\nthey are sent directly after each other.\n\nChanging this setting will clear chat history!\n\nExample when enabled:\n  <Player>: hi\n  <Player>: hey\n  <Player>: hi <- Will not be compacted\nExample when disabled (default):\n  <Player>: hi\n  <Player>: hey\n  <Player>: hi <- Will be compacted",
+  
+  "text.config.compact-chat.option.ignoreCommonSeparators": "Ignore common message separators",
+  "text.config.compact-chat.option.ignoreCommonSeparators.tooltip": "If enabled, messages containing\n\"------\"and \"======\" won't be\ncompacted."
 }

@@ -23,10 +23,10 @@ public class ChatHudHook {
     public ChatHudHook(IChatHudExt chatHud) {
         this.chatHud = chatHud;
 
-        // Clear chat history when `onlyCompactConsecutiveMessages` has been toggled.
-        CompactChatClient
-            .configuration()
-            .subscribeToOnlyCompactConsecutiveMessages(value -> chatHud.compactchat$clear());
+        // Clear chat history when relevant options have been toggled.
+        var configuration = CompactChatClient.configuration();
+        configuration.subscribeToOnlyCompactConsecutiveMessages(value -> chatHud.compactchat$clear());
+        configuration.subscribeToIgnoreCommonSeparators(value -> chatHud.compactchat$clear());
     }
 
     /**
@@ -38,7 +38,7 @@ public class ChatHudHook {
         this.previousMessage = message;
 
         var shouldIgnoreNonConsecutiveMessage = CompactChatClient.configuration().onlyCompactConsecutiveMessages() && !message.equals(previousMessage);
-        if (chatMessage == null || shouldIgnoreNonConsecutiveMessage) {
+        if (chatMessage == null || shouldIgnoreNonConsecutiveMessage || shouldIgnoreCommonSeparator(message)) {
             this.chatMessages.put(message, new ChatMessage());
             return message;
         }
@@ -48,6 +48,22 @@ public class ChatHudHook {
         chatMessage.addOccurrence();
 
         return chatMessage.modifiedText(message);
+    }
+
+    /**
+     * If the option is enabled, common separators will be ignored.
+     * A message is a common separator if it contains ====== or -------
+     */
+    private boolean shouldIgnoreCommonSeparator(Text message) {
+        if (!CompactChatClient.configuration().ignoreCommonSeparators()) {
+            return false;
+        }
+
+        var trimmedString = message.getString().trim();
+        return trimmedString.isEmpty()
+            || trimmedString.isBlank()
+            || trimmedString.contains("------")
+            || trimmedString.contains("======");
     }
 
     /**
