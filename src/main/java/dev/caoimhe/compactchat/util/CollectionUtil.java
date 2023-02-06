@@ -6,8 +6,9 @@ import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class CollectionUtil {
+    @SafeVarargs
     public static <E> ArrayList<E> makeArrayList(E... elements) {
-        return new ArrayList<E>(Arrays.asList(elements));
+        return new ArrayList<>(Arrays.asList(elements));
     }
 
     public static <E> E randomFrom(List<E> list) {
