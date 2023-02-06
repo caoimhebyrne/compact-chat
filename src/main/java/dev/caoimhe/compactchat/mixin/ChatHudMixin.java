@@ -28,7 +28,7 @@ public abstract class ChatHudMixin implements IChatHudExt {
     private List<ChatHudLine> messages;
 
     @Shadow
-    protected abstract void refresh();
+    public abstract void reset();
 
     @Shadow
     public abstract void clear(boolean clearHistory);
@@ -59,7 +59,7 @@ public abstract class ChatHudMixin implements IChatHudExt {
 
     @Override
     public void compactchat$refreshMessages() {
-        this.refresh();
+        this.reset();
     }
 
     @Override
