@@ -2,7 +2,10 @@
 
 ## Compact Chat
 
-**Compact Chat** is a mod for [Fabric](https://fabricmc.net) which compacts duplicate messages from your chat.
+**Compact Chat** is a mod for [Fabric](https://fabricmc.net) which will remove duplicate messages from your chat.
+
+If a message is sent twice, the previous message will be removed, and the newer one will have the number of occurrences
+appended to it.
 
 > Make sure to check out the config for all available options.
 > **(Requires [Mod Menu](https://modrinth.com/mod/modmenu)!)**
