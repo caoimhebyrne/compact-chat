@@ -1,11 +1,17 @@
+<img alt="Icon" src="src/main/resources/assets/compact-chat/icon.png" width="100"/>
+
 ## Compact Chat
 
-**Compact Chat** is a mod for [Fabric](https://fabricmc.net) which removes duplicate messages from your chat.
+**Compact Chat** is a mod for [Fabric](https://fabricmc.net) which compacts duplicate messages from your chat.
+
+> Make sure to check out the config for all available options.
+> **(Requires [Mod Menu](https://modrinth.com/mod/modmenu)!)**
+
+| Before Compact Chat                  | After Compact Chat                 |
+|--------------------------------------|------------------------------------|
+| ![Before](.github/images/before.png) | ![After](.github/images/after.png) |
 
 ### Installation
-
-> **Note**
-> This mod is currently being rewritten for 1.19.1+. The versions previously available are for 1.19 and lower.
 
 [![Download on Modrinth](https://github.com/Prospector/badges/blob/master/modrinth-badge-72h-padded.png?raw=true)](https://modrinth.com/mod/compact-chat)
 
