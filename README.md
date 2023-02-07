@@ -1,5 +1,3 @@
-<img alt="Icon" src="src/main/resources/assets/compact-chat/icon.png" width="100"/>
-
 ## Compact Chat
 
 **Compact Chat** is a mod for [Fabric](https://fabricmc.net) which will remove duplicate messages from your chat.
