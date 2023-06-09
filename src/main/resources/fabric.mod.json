@@ -24,12 +24,12 @@
     "compact-chat.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.14.14",
-    "minecraft": "~1.19.1",
+    "fabricloader": ">=0.14.21",
+    "minecraft": "~1.20",
     "java": ">=17",
-    "owo": ">=0.9.3"
+    "owo": ">=0.11.0"
   },
   "recommends": {
-    "modmenu": ">=4.1.2"
+    "modmenu": ">=7.0.1"
   }
 }
