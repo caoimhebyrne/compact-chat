@@ -11,7 +11,6 @@ import java.util.List;
 
 public class CompactChatClient implements ClientModInitializer {
     private static final Logger LOGGER = LoggerFactory.getLogger("compact-chat");
-    private static final Configuration CONFIGURATION = Configuration.createAndLoad();
 
     private static final List<String> STARTUP_MESSAGES = CollectionUtil.makeArrayList(
         "Helloooo! Is anyone out there?",
@@ -21,12 +20,11 @@ public class CompactChatClient implements ClientModInitializer {
         "zZz zZz zZ- oh, hey! I'm awake, I'm awake..."
     );
 
-    public static Configuration configuration() {
-        return CONFIGURATION;
-    }
-
     @Override
     public void onInitializeClient() {
+        Configuration.register();
+        // TODO: Migrate old .json5 config files to .json
+
         var message = CollectionUtil.randomFrom(STARTUP_MESSAGES);
         message = message.replace("{RANDOM_MOD}", FabricLoaderUtil.getRandomModName());
 

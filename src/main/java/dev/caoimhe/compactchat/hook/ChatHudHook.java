@@ -1,6 +1,6 @@
 package dev.caoimhe.compactchat.hook;
 
-import dev.caoimhe.compactchat.CompactChatClient;
+import dev.caoimhe.compactchat.config.Configuration;
 import dev.caoimhe.compactchat.core.ChatMessage;
 import dev.caoimhe.compactchat.hook.extensions.IChatHudExt;
 import dev.caoimhe.compactchat.util.TextUtil;
@@ -24,10 +24,8 @@ public class ChatHudHook {
     public ChatHudHook(IChatHudExt chatHud) {
         this.chatHud = chatHud;
 
-        // Clear chat history when relevant options have been toggled.
-        var configuration = CompactChatClient.configuration();
-        configuration.subscribeToOnlyCompactConsecutiveMessages(value -> chatHud.compactchat$clear());
-        configuration.subscribeToIgnoreCommonSeparators(value -> chatHud.compactchat$clear());
+        // Clear chat history when the configuration has been saved.
+        Configuration.getInstance().onSave(chatHud::compactchat$clear);
     }
 
     /**
@@ -44,7 +42,7 @@ public class ChatHudHook {
         var previousMessage = this.previousMessage;
         this.previousMessage = withoutTimestamps;
 
-        var shouldIgnoreNonConsecutiveMessage = CompactChatClient.configuration().onlyCompactConsecutiveMessages() && !withoutTimestamps.equals(previousMessage);
+        var shouldIgnoreNonConsecutiveMessage = Configuration.getInstance().onlyCompactConsecutiveMessages && !withoutTimestamps.equals(previousMessage);
         if (chatMessage == null || shouldIgnoreNonConsecutiveMessage || shouldIgnoreCommonSeparator(message)) {
             this.chatMessages.put(withoutTimestamps, new ChatMessage());
             return message;
@@ -62,7 +60,7 @@ public class ChatHudHook {
      * A message is a common separator if it contains ====== or -------
      */
     private boolean shouldIgnoreCommonSeparator(Text message) {
-        if (!CompactChatClient.configuration().ignoreCommonSeparators()) {
+        if (!Configuration.getInstance().ignoreCommonSeparators) {
             return false;
         }
 
