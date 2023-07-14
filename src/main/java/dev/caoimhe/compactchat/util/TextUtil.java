@@ -10,7 +10,7 @@ public class TextUtil {
      * A regex pattern to match a timestamp of HH:mm(:ss?).
      * It can be surrounded by any character.
      */
-    private static final String TIMESTAMP_PATTERN = ".[0-9]{2}:[0-9]{2}:[0-9]{2}.";
+    private static final String TIMESTAMP_PATTERN = ".?\\d{1,2}:\\d{2}(:\\d{2})*.?";
 
     public static Text removeSiblings(Text parent, Predicate<Text> predicate) {
         var copy = parent.copy();
