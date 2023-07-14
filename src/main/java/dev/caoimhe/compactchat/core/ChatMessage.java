@@ -50,10 +50,14 @@ public class ChatMessage {
         return unmodifiedText.copy().append(occurrencesText);
     }
 
+    public Text removeTextModifications(Text modifiedText) {
+        return this.removeOccurencesText(TextUtil.removeTimestamps(modifiedText));
+    }
+
     /**
      * Returns an unmodified version of a modified text (one that has occurrences appended).
      */
-    public Text removeOccurencesText(Text modifiedText) {
+    private Text removeOccurencesText(Text modifiedText) {
         return TextUtil.removeSiblings(modifiedText, this::hasOccurrencesAppended);
     }
 

@@ -18,7 +18,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.List;
 
-@Mixin(ChatHud.class)
+/**
+ * The priority is set to 9999 to ensure that this mixin is applied after all other mixins.
+ * See GitHub issue #23 for more information.
+ */
+@Mixin(value = ChatHud.class, priority = 9999)
 public abstract class ChatHudMixin implements IChatHudExt {
     @Unique
     private final ChatHudHook compactchat$hook = new ChatHudHook(this);

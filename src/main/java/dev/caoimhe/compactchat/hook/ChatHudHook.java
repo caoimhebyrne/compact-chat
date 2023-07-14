@@ -3,6 +3,7 @@ package dev.caoimhe.compactchat.hook;
 import dev.caoimhe.compactchat.CompactChatClient;
 import dev.caoimhe.compactchat.core.ChatMessage;
 import dev.caoimhe.compactchat.hook.extensions.IChatHudExt;
+import dev.caoimhe.compactchat.util.TextUtil;
 import net.minecraft.text.Text;
 
 import java.util.HashMap;
@@ -33,13 +34,19 @@ public class ChatHudHook {
      * Returns the modified (if applicable) chat message.
      */
     public Text compactChatMessage(Text message) {
-        var chatMessage = this.chatMessages.get(message);
-        var previousMessage = this.previousMessage;
-        this.previousMessage = message;
+        // We only use the message without timestamps when comparing to the previous/other messages.
+        // This is because the timestamps are not part of the message, and thus should not be used for comparison.
+        // However, we do want to keep the timestamps in the message, so we can't remove them from the message.
+        // See GitHub issue #23 for more information.
+        var withoutTimestamps = TextUtil.removeTimestamps(message);
 
-        var shouldIgnoreNonConsecutiveMessage = CompactChatClient.configuration().onlyCompactConsecutiveMessages() && !message.equals(previousMessage);
+        var chatMessage = this.chatMessages.get(withoutTimestamps);
+        var previousMessage = this.previousMessage;
+        this.previousMessage = withoutTimestamps;
+
+        var shouldIgnoreNonConsecutiveMessage = CompactChatClient.configuration().onlyCompactConsecutiveMessages() && !withoutTimestamps.equals(previousMessage);
         if (chatMessage == null || shouldIgnoreNonConsecutiveMessage || shouldIgnoreCommonSeparator(message)) {
-            this.chatMessages.put(message, new ChatMessage());
+            this.chatMessages.put(withoutTimestamps, new ChatMessage());
             return message;
         }
 
@@ -75,8 +82,8 @@ public class ChatHudHook {
             var chatHudLine = iterator.next();
 
             // We remove occurrences because we want to remove existing compacted messages too.
-            var contentWithoutOccurrences = message.removeOccurencesText(chatHudLine.content());
-            var textWithoutOccurrences = message.removeOccurencesText(originalMessage);
+            var contentWithoutOccurrences = message.removeTextModifications(chatHudLine.content());
+            var textWithoutOccurrences = message.removeTextModifications(originalMessage);
 
             if (contentWithoutOccurrences.equals(textWithoutOccurrences)) {
                 iterator.remove();
