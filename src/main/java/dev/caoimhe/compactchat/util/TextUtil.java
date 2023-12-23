@@ -1,6 +1,6 @@
 package dev.caoimhe.compactchat.util;
 
-import net.minecraft.text.LiteralTextContent;
+import net.minecraft.text.PlainTextContent;
 import net.minecraft.text.Text;
 
 import java.util.function.Predicate;
@@ -25,11 +25,11 @@ public class TextUtil {
      */
     public static Text removeTimestamps(Text text) {
         var content = text.getContent();
-        if (!(content instanceof LiteralTextContent literalTextContent)) {
+        if (!(content instanceof PlainTextContent textContent)) {
             return text;
         }
 
-        var string = literalTextContent.string();
+        var string = textContent.string();
         var withoutTimestamps = string.replaceAll(TIMESTAMP_PATTERN, "");
         if (withoutTimestamps.equals(string)) {
             return text;

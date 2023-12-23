@@ -27,12 +27,12 @@
     "compact-chat.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.14.21",
-    "minecraft": ">=1.20",
+    "fabricloader": ">=0.15.0",
+    "minecraft": ">=1.20.4",
     "java": ">=17",
-    "cloth-config": ">=11.1.106"
+    "cloth-config": ">=13.0.121"
   },
   "recommends": {
-    "modmenu": ">=7.0.1"
+    "modmenu": ">=9.0.0"
   }
 }
