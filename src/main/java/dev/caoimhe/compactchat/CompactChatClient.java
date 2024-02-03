@@ -3,15 +3,25 @@ package dev.caoimhe.compactchat;
 import dev.caoimhe.compactchat.config.Configuration;
 import dev.caoimhe.compactchat.util.CollectionUtil;
 import dev.caoimhe.compactchat.util.FabricLoaderUtil;
+import javafx.util.Pair;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.text.OrderedText;
+import net.minecraft.text.StringVisitable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.nio.file.Files;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CompactChatClient implements ClientModInitializer {
+    /**
+     * @see dev.caoimhe.compactchat.mixin.ChatMessagesMixin
+     */
+    public static final Map<Pair<StringVisitable, Integer>, List<OrderedText>> CACHED_SPLIT_MESSAGES = new HashMap<>();
+
     private static final Logger LOGGER = LoggerFactory.getLogger("compact-chat");
 
     private static final List<String> STARTUP_MESSAGES = CollectionUtil.makeArrayList(

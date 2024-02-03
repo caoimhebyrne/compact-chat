@@ -1,5 +1,6 @@
 package dev.caoimhe.compactchat.hook;
 
+import dev.caoimhe.compactchat.CompactChatClient;
 import dev.caoimhe.compactchat.config.Configuration;
 import dev.caoimhe.compactchat.core.ChatMessage;
 import dev.caoimhe.compactchat.hook.extensions.IChatHudExt;
@@ -100,5 +101,6 @@ public class ChatHudHook {
      */
     public void reset() {
         chatMessages.clear();
+        CompactChatClient.CACHED_SPLIT_MESSAGES.clear();
     }
 }
