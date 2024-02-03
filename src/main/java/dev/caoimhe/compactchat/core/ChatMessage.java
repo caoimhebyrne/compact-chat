@@ -26,13 +26,14 @@ public class ChatMessage {
     /**
      * The amount of times this message has occurred.
      */
-    private int occurrences = 1;
+    public int occurrences = 1;
 
     /**
      * Increments the occurrences counter.
      */
     public void addOccurrence() {
-        occurrences++;
+        // To prevent lag occurring after spamming messages, let's stop modifying it after 100 occurrences.
+        occurrences = Math.min(occurrences + 1, 100);
     }
 
     /**
@@ -43,8 +44,14 @@ public class ChatMessage {
             return unmodifiedText;
         }
 
+        var occurrencesString = " (" + occurrences;
+        if (occurrences >= 100) {
+            occurrencesString += "+";
+        }
+        occurrencesString += ")";
+
         var occurrencesText = Text
-            .literal(" (" + occurrences + ")")
+            .literal(occurrencesString)
             .setStyle(OCCURENCES_TEXT_STYLE);
 
         return unmodifiedText.copy().append(occurrencesText);
