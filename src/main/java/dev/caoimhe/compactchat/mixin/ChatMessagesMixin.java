@@ -3,11 +3,11 @@ package dev.caoimhe.compactchat.mixin;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.llamalad7.mixinextras.sugar.Local;
 import dev.caoimhe.compactchat.CompactChatClient;
-import javafx.util.Pair;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.util.ChatMessages;
 import net.minecraft.text.OrderedText;
 import net.minecraft.text.StringVisitable;
+import org.apache.commons.lang3.tuple.Pair;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -24,7 +24,7 @@ public class ChatMessagesMixin {
         TextRenderer textRenderer,
         CallbackInfoReturnable<List<OrderedText>> cir
     ) {
-        var entry = CompactChatClient.SPLIT_MESSAGES_CACHE.getIfPresent(new Pair<>(message.getString(), width));
+        var entry = CompactChatClient.SPLIT_MESSAGES_CACHE.getIfPresent(Pair.of(message.getString(), width));
         if (entry != null) {
             cir.setReturnValue(entry);
         }
@@ -36,7 +36,7 @@ public class ChatMessagesMixin {
         @Local(argsOnly = true) StringVisitable message,
         @Local(argsOnly = true) int width
     ) {
-        CompactChatClient.SPLIT_MESSAGES_CACHE.put(new Pair<>(message.getString(), width), original);
+        CompactChatClient.SPLIT_MESSAGES_CACHE.put(Pair.of(message.getString(), width), original);
         return original;
     }
 }

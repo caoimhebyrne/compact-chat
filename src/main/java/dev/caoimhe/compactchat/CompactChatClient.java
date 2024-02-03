@@ -5,10 +5,10 @@ import com.google.common.cache.CacheBuilder;
 import dev.caoimhe.compactchat.config.Configuration;
 import dev.caoimhe.compactchat.util.CollectionUtil;
 import dev.caoimhe.compactchat.util.FabricLoaderUtil;
-import javafx.util.Pair;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.text.OrderedText;
+import org.apache.commons.lang3.tuple.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
