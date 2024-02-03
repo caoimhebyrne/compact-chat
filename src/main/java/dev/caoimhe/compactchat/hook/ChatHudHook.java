@@ -14,7 +14,7 @@ public class ChatHudHook {
     /**
      * A historical map of all chat messages sent, mapped to their wrapper class
      */
-    private final HashMap<Text, ChatMessage> chatMessages = new HashMap<>();
+    private final HashMap<String, ChatMessage> chatMessages = new HashMap<>();
 
     /**
      * The previous message received by the client
@@ -38,13 +38,13 @@ public class ChatHudHook {
         // See GitHub issue #23 for more information.
         var withoutTimestamps = TextUtil.removeTimestamps(message);
 
-        var chatMessage = this.chatMessages.get(withoutTimestamps);
+        var chatMessage = this.chatMessages.get(message.getString());
         var previousMessage = this.previousMessage;
         this.previousMessage = withoutTimestamps;
 
         var shouldIgnoreNonConsecutiveMessage = Configuration.getInstance().onlyCompactConsecutiveMessages && !withoutTimestamps.equals(previousMessage);
         if (chatMessage == null || shouldIgnoreNonConsecutiveMessage || shouldIgnoreCommonSeparator(message)) {
-            this.chatMessages.put(withoutTimestamps, new ChatMessage());
+            this.chatMessages.put(withoutTimestamps.getString(), new ChatMessage());
             return message;
         }
 
