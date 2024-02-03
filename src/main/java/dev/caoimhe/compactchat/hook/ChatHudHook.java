@@ -101,6 +101,6 @@ public class ChatHudHook {
      */
     public void reset() {
         chatMessages.clear();
-        CompactChatClient.CACHED_SPLIT_MESSAGES.clear();
+        CompactChatClient.SPLIT_MESSAGES_CACHE.invalidateAll();
     }
 }

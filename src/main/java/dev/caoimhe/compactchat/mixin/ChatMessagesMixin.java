@@ -24,7 +24,7 @@ public class ChatMessagesMixin {
         TextRenderer textRenderer,
         CallbackInfoReturnable<List<OrderedText>> cir
     ) {
-        var entry = CompactChatClient.CACHED_SPLIT_MESSAGES.get(new Pair<>(message, width));
+        var entry = CompactChatClient.SPLIT_MESSAGES_CACHE.getIfPresent(new Pair<>(message.getString(), width));
         if (entry != null) {
             cir.setReturnValue(entry);
         }
@@ -36,7 +36,7 @@ public class ChatMessagesMixin {
         @Local(argsOnly = true) StringVisitable message,
         @Local(argsOnly = true) int width
     ) {
-        CompactChatClient.CACHED_SPLIT_MESSAGES.put(new Pair<>(message, width), original);
+        CompactChatClient.SPLIT_MESSAGES_CACHE.put(new Pair<>(message.getString(), width), original);
         return original;
     }
 }

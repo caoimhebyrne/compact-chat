@@ -1,5 +1,7 @@
 package dev.caoimhe.compactchat;
 
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
 import dev.caoimhe.compactchat.config.Configuration;
 import dev.caoimhe.compactchat.util.CollectionUtil;
 import dev.caoimhe.compactchat.util.FabricLoaderUtil;
@@ -7,20 +9,20 @@ import javafx.util.Pair;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.text.OrderedText;
-import net.minecraft.text.StringVisitable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.nio.file.Files;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class CompactChatClient implements ClientModInitializer {
     /**
      * @see dev.caoimhe.compactchat.mixin.ChatMessagesMixin
      */
-    public static final Map<Pair<StringVisitable, Integer>, List<OrderedText>> CACHED_SPLIT_MESSAGES = new HashMap<>();
+    public static final Cache<Pair<String, Integer>, List<OrderedText>> SPLIT_MESSAGES_CACHE = CacheBuilder.newBuilder()
+        .expireAfterAccess(1, TimeUnit.MINUTES)
+        .build();
 
     private static final Logger LOGGER = LoggerFactory.getLogger("compact-chat");
 
