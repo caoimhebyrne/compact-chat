@@ -1,0 +1,9 @@
+{
+  "text.autoconfig.compact-chat.title": "紧凑聊天（Compact Chat）选项",
+  
+  "text.autoconfig.compact-chat.option.onlyCompactConsecutiveMessages": "仅压缩连续信息",
+  "text.autoconfig.compact-chat.option.onlyCompactConsecutiveMessages.@Tooltip": "只有当信息直接在彼此之后发送时，\n才会被压缩。\n\n更改此设置将清除聊天记录！\n\n启用示例：\n  <玩家>：嗨\n  <玩家>：嘿\n  <玩家>：嗨 <- 不会被压缩\n禁用示例（默认）：\n  <玩家>：嗨\n  <玩家>：嘿\n  <玩家>：嗨 <- 会被压缩",
+  
+  "text.autoconfig.compact-chat.option.ignoreCommonSeparators": "忽略常用信息分隔符",
+  "text.autoconfig.compact-chat.option.ignoreCommonSeparators.@Tooltip": "若启用，包含\"------\" 和 \"======\"\n的信息将不会被压缩。"
+}
