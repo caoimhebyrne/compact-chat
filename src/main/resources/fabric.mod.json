@@ -9,8 +9,8 @@
   ],
   "contact": {
     "homepage": "https://modrinth.com/mod/compact-chat",
-    "sources": "https://github.com/cbyrneee/compact-chat",
-    "issues": "https://github.com/cbyrneee/compact-chat/issues"
+    "sources": "https://github.com/caoimhebyrne/compact-chat",
+    "issues": "https://github.com/caoimhebyrne/compact-chat/issues"
   },
   "license": "MIT",
   "icon": "assets/compact-chat/icon.png",
@@ -34,5 +34,12 @@
   },
   "recommends": {
     "modmenu": ">=9.0.0"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "https://discord.gg/m73BKShdJR"
+      }
+    }
   }
 }
