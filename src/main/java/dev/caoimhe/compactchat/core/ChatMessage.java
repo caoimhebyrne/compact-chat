@@ -13,10 +13,10 @@ import java.util.regex.Pattern;
  */
 public class ChatMessage {
     /**
-     * A regex pattern to match " (X)", X being any number.
+     * A regex pattern to match " (X+)", X being any number, and '+' being optional.
      * It also ensures that the closing parentheses is the end of the string.
      */
-    private static final Pattern OCCURRENCES_TEXT_PATTERN = Pattern.compile("\\([0-9]+\\)$");
+    private static final Pattern OCCURRENCES_TEXT_PATTERN = Pattern.compile("\\([0-9]+[+]?\\)$");
 
     /**
      * The styling for the occurrences text

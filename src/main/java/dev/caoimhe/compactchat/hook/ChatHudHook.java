@@ -51,9 +51,10 @@ public class ChatHudHook {
 
         // This chat message has occurred before, let's remove the old occurrence(s) - only if it's under 100 messages.
         if (chatMessage.occurrences < 100) {
-            this.removeMessage(message, chatMessage);
             chatMessage.addOccurrence();
         }
+
+        this.removeMessage(message, chatMessage);
 
         return chatMessage.modifiedText(message);
     }
