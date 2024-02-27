@@ -1,5 +1,6 @@
 package dev.caoimhe.compactchat.core;
 
+import dev.caoimhe.compactchat.config.Configuration;
 import dev.caoimhe.compactchat.util.TextUtil;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
@@ -33,7 +34,7 @@ public class ChatMessage {
      */
     public void addOccurrence() {
         // To prevent lag occurring after spamming messages, let's stop modifying it after 100 occurrences.
-        occurrences = Math.min(occurrences + 1, 100);
+        occurrences = Math.min(occurrences + 1, Configuration.getInstance().maximumOccurrences);
     }
 
     /**

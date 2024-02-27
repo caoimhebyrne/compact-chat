@@ -26,6 +26,12 @@ public class Configuration implements ConfigData {
     @Tooltip
     public boolean ignoreCommonSeparators = true;
 
+    /**
+     * The amount of messages that can be sent before subsequent occurrences are ignored.
+     */
+    @Tooltip
+    public int maximumOccurrences = 100;
+
     public static void register() {
         if (configHolder != null) {
             throw new IllegalStateException("Configuration has already been initialized!");

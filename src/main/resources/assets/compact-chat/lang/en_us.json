@@ -5,5 +5,8 @@
   "text.autoconfig.compact-chat.option.onlyCompactConsecutiveMessages.@Tooltip": "Messages will only be compacted if\nthey are sent directly after each other.\n\nChanging this setting will clear chat history!\n\nExample when enabled:\n  <Player>: hi\n  <Player>: hey\n  <Player>: hi <- Will not be compacted\nExample when disabled (default):\n  <Player>: hi\n  <Player>: hey\n  <Player>: hi <- Will be compacted",
   
   "text.autoconfig.compact-chat.option.ignoreCommonSeparators": "Ignore common message separators",
-  "text.autoconfig.compact-chat.option.ignoreCommonSeparators.@Tooltip": "If enabled, messages containing\n\"------\"and \"======\" won't be\ncompacted."
+  "text.autoconfig.compact-chat.option.ignoreCommonSeparators.@Tooltip": "If enabled, messages containing\n\"------\"and \"======\" won't be\ncompacted.",
+
+  "text.autoconfig.compact-chat.option.maximumOccurrences": "Maximum occurrences",
+  "text.autoconfig.compact-chat.option.maximumOccurrences.@Tooltip": "Messages which have been sent over this\namount of times will not be counted anymore.\n\nFor example, if set to 100, anything over\n100 will turn into 100+."
 }
