@@ -39,7 +39,7 @@ public class ChatHudHook {
         // See GitHub issue #23 for more information.
         var withoutTimestamps = TextUtil.removeTimestamps(message);
 
-        var chatMessage = this.chatMessages.get(message.getString());
+        var chatMessage = this.chatMessages.get(withoutTimestamps.getString());
         var previousMessage = this.previousMessage;
         this.previousMessage = withoutTimestamps;
 
