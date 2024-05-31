@@ -38,16 +38,11 @@ public abstract class ChatHudMixin implements IChatHudExt {
     public abstract void clear(boolean clearHistory);
 
     @ModifyVariable(
-        method = "addMessage(Lnet/minecraft/text/Text;Lnet/minecraft/network/message/MessageSignatureData;ILnet/minecraft/client/gui/hud/MessageIndicator;Z)V",
+        method = "addMessage(Lnet/minecraft/text/Text;Lnet/minecraft/network/message/MessageSignatureData;Lnet/minecraft/client/gui/hud/MessageIndicator;)V",
         at = @At("HEAD"),
         argsOnly = true
     )
-    private Text compactchat$compactChatMessage(Text message, Text parameterMessage, MessageSignatureData data, int ticks, MessageIndicator indicator, boolean refreshing) {
-        // If we're refreshing, we have probably already modified the message, therefore we don't want to do anything.
-        if (refreshing) {
-            return message;
-        }
-
+    private Text compactchat$compactChatMessage(Text message, Text parameterMessage, MessageSignatureData data, MessageIndicator indicator) {
         return this.compactchat$hook.compactChatMessage(message);
     }
 
