@@ -28,12 +28,12 @@
   ],
   "depends": {
     "fabricloader": ">=0.15.0",
-    "minecraft": ">=1.20.4",
-    "java": ">=17",
-    "cloth-config": ">=13.0.121"
+    "minecraft": ">=1.20.6",
+    "java": ">=21",
+    "cloth-config": ">=14.0.126"
   },
   "recommends": {
-    "modmenu": ">=9.0.0"
+    "modmenu": ">=10.0.0"
   },
   "custom": {
     "modmenu": {
