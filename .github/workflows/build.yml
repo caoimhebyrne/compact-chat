@@ -11,9 +11,9 @@ jobs:
     strategy:
       matrix:
         # Use these Java versions
-        java: [17]
+        java: [21]
         # and run on Linux
-        os: [ubuntu-22.04]
+        os: [ubuntu-latest]
     runs-on: ${{ matrix.os }}
     steps:
       - name: checkout repository
