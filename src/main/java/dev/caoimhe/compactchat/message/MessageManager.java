@@ -1,5 +1,6 @@
 package dev.caoimhe.compactchat.message;
 
+import dev.caoimhe.compactchat.config.Configuration;
 import dev.caoimhe.compactchat.ext.IChatHudExt;
 import dev.caoimhe.compactchat.message.content.OccurrenceTextContent;
 import net.minecraft.client.gui.hud.ChatHudLine;
@@ -94,6 +95,10 @@ public class MessageManager {
         }
 
         // Common separators used by servers, e.g. Hypixel.
-        return trimmedMessage.contains("------") || trimmedMessage.contains("======");
+        if (Configuration.instance().ignoreCommonSeparators) {
+            return trimmedMessage.contains("------") || trimmedMessage.contains("======");
+        }
+
+        return false;
     }
 }
