@@ -16,6 +16,7 @@ base.archivesName = "compact-chat-${project.name}"
 repositories {
     maven("https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1")
     maven("https://maven.terraformersmc.com")
+    maven("https://maven.shedaniel.me")
 }
 
 dependencies {
@@ -23,9 +24,12 @@ dependencies {
     val devAuthVersion = dependencyVersion("devauth", "DevAuth")
     modRuntimeOnly("me.djtheredstoner:DevAuth-${platform.loaderStr}:$devAuthVersion")
 
+    val clothConfigApiVersion = dependencyVersion("cloth-config-api", "Cloth Config API")
+    modImplementation("me.shedaniel.cloth:cloth-config-${platform.loaderStr}:$clothConfigApiVersion")
+
     if (platform.isFabric) {
         val modMenuVersion = dependencyVersion("modmenu", "ModMenu")
-        modRuntimeOnly("com.terraformersmc:modmenu:$modMenuVersion")
+        modImplementation("com.terraformersmc:modmenu:$modMenuVersion")
     }
 }
 

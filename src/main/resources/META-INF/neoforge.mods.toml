@@ -30,3 +30,9 @@ type = "required"
 versionRange = "[${mcVersionStr},)"
 ordering = "NONE"
 side = "BOTH"
+
+[[dependencies.dev_caoimhe_compact_chat]]
+modId = "cloth_config"
+type = "required"
+ordering = "NONE"
+side = "BOTH"
