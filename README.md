@@ -20,6 +20,8 @@ This project uses to [ReplayMod/preprocessor](https://github.com/ReplayMod/prepr
 versions and [EssentialGG/essential-gradle-toolkit](https://github.com/essentialgg/essential-gradle-toolkit) to make it
 all easier to set up.
 
+![A screenshot of the Minecraft chat, showing compact-chat compacting multiple messages into a single line](.github/screenshot.png)
+
 ## License
 
 This project is licensed under the [MIT](./LICENSE) license.
