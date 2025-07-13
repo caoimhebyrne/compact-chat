@@ -25,10 +25,7 @@ dependencies {
 
     if (platform.isFabric) {
         val modMenuVersion = dependencyVersion("modmenu", "ModMenu")
-        val fabricApiVersion = dependencyVersion("fabric-api", "Fabric API")
-
         modRuntimeOnly("com.terraformersmc:modmenu:$modMenuVersion")
-        modImplementation("net.fabricmc.fabric-api:fabric-api:$fabricApiVersion")
     }
 }
 
