@@ -1,0 +1,99 @@
+package dev.caoimhe.compactchat.message;
+
+import dev.caoimhe.compactchat.ext.IChatHudExt;
+import dev.caoimhe.compactchat.message.content.OccurrenceTextContent;
+import net.minecraft.client.gui.hud.ChatHudLine;
+import net.minecraft.text.MutableText;
+import net.minecraft.text.Style;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
+
+import java.util.HashMap;
+import java.util.ListIterator;
+import java.util.Map;
+
+/**
+ * Responsible for keeping track of how many times a message has been sent in chat and removing duplicates from the
+ * chat history.
+ *
+ * @see dev.caoimhe.compactchat.mixin.ChatHudMixin
+ */
+public class MessageManager {
+    private static final Style OCCURRENCE_TEXT_STYLE = Style.EMPTY.withColor(Formatting.GRAY);
+
+    private final IChatHudExt chatHud;
+    private final Map<Text, MessageTracker> messages;
+
+    public MessageManager(final IChatHudExt chatHud) {
+        this.chatHud = chatHud;
+        this.messages = new HashMap<>();
+    }
+
+    /**
+     * Attempts to compact an incoming message.
+     *
+     * @return The compacted message.
+     */
+    public Text compactMessage(final Text message) {
+        if (this.shouldIgnore(message)) {
+            return message;
+        }
+
+        final MessageTracker tracker = this.messages.computeIfAbsent(message, (v) -> new MessageTracker());
+        tracker.incrementOccurrences();
+
+        // If the message has only occurred once (i.e. this is the first occurrence of the message), we don't need to
+        // do anything, the message can be accepted as is.
+        if (tracker.occurrences() <= 1) {
+            return message;
+        }
+
+        // In order to append the occurrence counter (and do equality checks), we must make a mutable copy of the message.
+        final MutableText mutableMessage = message.copy();
+
+        // Before returning the message with updated occurrences, we should remove any existing messages from the chat
+        // history.
+        final ListIterator<ChatHudLine> iterator = this.chatHud.compactChat$getMessages().listIterator();
+        while (iterator.hasNext()) {
+            final ChatHudLine chatHudLine = iterator.next();
+
+            // In order to check equality with the incoming message, we need to remove the occurrence text content.
+            final MutableText contentWithoutOccurrences = chatHudLine.content().copy();
+            contentWithoutOccurrences.getSiblings().removeIf(it -> it.getContent() instanceof OccurrenceTextContent);
+
+            // In order to do a proper equality check, both instances must be a mutable copy of the message.
+            if (contentWithoutOccurrences.equals(mutableMessage)) {
+                iterator.remove();
+                this.chatHud.compactChat$refreshMessages();
+                break;
+            }
+        }
+
+        // We can then create a new Text instance with the OccurrenceTextContent as a child.
+        final MutableText occurrencesText = OccurrenceTextContent.create(tracker.occurrences())
+            .setStyle(MessageManager.OCCURRENCE_TEXT_STYLE);
+
+        return mutableMessage.append(occurrencesText);
+    }
+
+    /**
+     * Clears any tracked messages from this {@link MessageManager} instance.
+     */
+    public void clear() {
+        this.messages.clear();
+    }
+
+    /**
+     * @return Whether the provided message should be ignored for compacting.
+     */
+    private boolean shouldIgnore(final Text message) {
+        final String trimmedMessage = message.getString().trim();
+
+        if (trimmedMessage.isBlank()) {
+            return true;
+        }
+
+        // Common separators used by servers, e.g. Hypixel.
+        return trimmedMessage.contains("------") || trimmedMessage.contains("======");
+    }
+}

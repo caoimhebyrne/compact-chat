@@ -1,47 +1,35 @@
-object Constants {
-    const val MINECRAFT_VERSION = "1.20.6"
-    const val YARN_VERSION = "1.20.6+build.3"
-    const val LOADER_VERSION = "0.15.11"
-
-    const val FABRIC_API_VERSION = "0.99.4+1.20.6"
-    const val MOD_MENU_VERSION = "10.0.0-beta.1"
-    const val CLOTH_CONFIG_VERSION = "14.0.126"
-}
-
 plugins {
-    id("fabric-loom") version "1.6-SNAPSHOT"
+    id("gg.essential.defaults")
+    id("gg.essential.multi-version")
 }
 
-group = "dev.caoimhe.compactchat"
-version = "2.1.1"
-base.archivesName = "compact-chat"
-
-loom {
-    runs {
-        // Compact Chat is a client-sided only mod, it won't do anything on the server.
-        remove(getByName("server"))
-    }
+fun Project.dependencyVersion(name: String, friendlyName: String = name, defaultValue: String? = null): String {
+    return this.findProperty("dependency.$name.version") as? String
+        ?: defaultValue
+        ?: error("No $friendlyName version defined for ${platform.mcVersionStr} (${platform.loaderStr})")
 }
+
+group = "dev.caoimhe"
+version = "3.0.0-alpha.1"
+base.archivesName = "compact-chat-${project.name}"
 
 repositories {
-    maven("https://maven.terraformersmc.com/releases/")
-    maven("https://maven.shedaniel.me/")
+    maven("https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1")
+    maven("https://maven.terraformersmc.com")
 }
 
 dependencies {
-    minecraft("com.mojang:minecraft:${Constants.MINECRAFT_VERSION}")
-    mappings("net.fabricmc:yarn:${Constants.YARN_VERSION}:v2")
-    modImplementation("net.fabricmc:fabric-loader:${Constants.LOADER_VERSION}")
+    // Only used in the development environment for authentication.
+    val devAuthVersion = dependencyVersion("devauth", "DevAuth")
+    modRuntimeOnly("me.djtheredstoner:DevAuth-${platform.loaderStr}:$devAuthVersion")
 
-    modApi("com.terraformersmc:modmenu:${Constants.MOD_MENU_VERSION}")
-    modApi("me.shedaniel.cloth:cloth-config-fabric:${Constants.CLOTH_CONFIG_VERSION}") {
-        exclude(group = "net.fabricmc.fabric-api")
+    if (platform.isFabric) {
+        val modMenuVersion = dependencyVersion("modmenu", "ModMenu")
+        val fabricApiVersion = dependencyVersion("fabric-api", "Fabric API")
+
+        modRuntimeOnly("com.terraformersmc:modmenu:$modMenuVersion")
+        modImplementation("net.fabricmc.fabric-api:fabric-api:$fabricApiVersion")
     }
-
-    // This is not required by Compact Chat, but it is required by Mod Menu.
-    // We don't want to force people to have it, but we need Mod Menu in the development environment,
-    // so we'll just include it for that.
-    modRuntimeOnly("net.fabricmc.fabric-api:fabric-api:${Constants.FABRIC_API_VERSION}")
 }
 
 java {
@@ -49,18 +37,25 @@ java {
     targetCompatibility = JavaVersion.VERSION_21
 }
 
-tasks {
-    jar {
-        from("LICENSE") {
-            rename { "${it}_${project.base.archivesName}" }
+loom {
+    runConfigs {
+        remove(named("server").get())
+
+        // The Nvidia drivers on Fedora Linux are broken, this fixes the issue of the game hanging upon exit for me,
+        // if this causes issues in the future it can be removed, but it's nicer to have it defined here for now.
+        named("client") {
+            environmentVariable("__GL_THREADED_OPTIMIZATIONS", 0)
         }
     }
+}
 
-    processResources {
-        inputs.property("version", project.version)
 
-        filesMatching("fabric.mod.json") {
-            expand(mapOf("version" to project.version))
+tasks {
+    jar {
+        // This gradle script is evaluated for each `./version/{id}`, in order to get the LICENSE file, we need to
+        // resolve it from the root project, not the version's root.
+        from(rootProject.file("LICENSE")) {
+            rename { "compact-chat_${it}" }
         }
     }
 }

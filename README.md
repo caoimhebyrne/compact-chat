@@ -1,19 +1,25 @@
-## Compact Chat
+<h1>
+💬 <code>compact-chat</code>
+<p></p>
+<div>
+    <a href="https://modrinth.com/mod/compact-chat">
+        <img alt="modrinth" height="40" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/compact/available/modrinth_vector.svg">
+    </a>
+    <img alt="fabric" height="40" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/compact/supported/fabric_vector.svg">
+    <img alt="fabric" height="40" src="https://raw.githubusercontent.com/Hyperbole-Devs/vectors/8494ec1ac495cfb481dc7e458356325510933eb0/assets/compact/supported/neoforge_vector.svg">
+</div>
+</h1>
 
-**Compact Chat** is a mod for [Fabric](https://fabricmc.net) which will remove duplicate messages from your chat.
+Compact Chat is a Minecraft mod that removes duplicate messages from your chat.
 
-If a message is sent twice, the previous message will be removed, and the newer one will have the number of occurrences
-appended to it.
+Minecraft versions 1.21.1 and higher are supported on both Fabric and NeoForge. Older Minecraft versions may be
+supported in the future if there is demand for them! <sub>(no, there will not be a Forge
+port)</sb>
 
-> Make sure to check out the config for all available options.
-> **(Requires [Mod Menu](https://modrinth.com/mod/modmenu)!)**
+This project uses to [ReplayMod/preprocessor](https://github.com/ReplayMod/preprocessor/) to support multiple Minecraft
+versions and [EssentialGG/essential-gradle-toolkit](https://github.com/essentialgg/essential-gradle-toolkit) to make it
+all easier to set up.
 
-| Before Compact Chat                  | After Compact Chat                 |
-|--------------------------------------|------------------------------------|
-| ![Before](.github/images/before.png) | ![After](.github/images/after.png) |
+## License
 
-### Installation
-
-[![Download on Modrinth](https://github.com/Prospector/badges/blob/master/modrinth-badge-72h-padded.png?raw=true)](https://modrinth.com/mod/compact-chat)
-
-or, download it from the [releases page](https://github.com/cbyrneee/compact-chat/releases).
+This project is licensed under the [MIT](./LICENSE) license.

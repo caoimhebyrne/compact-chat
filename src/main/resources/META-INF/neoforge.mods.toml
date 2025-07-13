@@ -1,0 +1,32 @@
+modLoader = "javafml"
+loaderVersion = "[1,)"
+license = "MIT"
+issueTrackerURL = "https://github.com/caoimhebyrne/compact-chat/issues"
+
+[[mods]]
+modId = "dev_caoimhe_compact_chat"
+version = "${version}"
+displayName = "Compact Chat"
+logoFile = "assets/compact-chat/icon.png"
+authors = "Caoimhe Byrne"
+credits = "Caoimhe Byrne"
+description = '''
+Clean up your chat by removing duplicate chat messages!
+'''
+
+[[mixins]]
+config = "compact-chat.mixins.json"
+
+[[dependencies.dev_caoimhe_compact_chat]]
+modId = "neoforge"
+type = "required"
+versionRange = "[21.1,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.dev_caoimhe_compact_chat]]
+modId = "minecraft"
+type = "required"
+versionRange = "[${mcVersionStr},)"
+ordering = "NONE"
+side = "BOTH"
