@@ -1,43 +1,7 @@
-# gradle
+**/.gradle
+**/.idea
+**/build
+**/out
+**/run
 
-.gradle/
-build/
-out/
-classes/
-
-# eclipse
-
-*.launch
-
-# idea
-
-.idea/**/*
-!.idea/icon.png
-*.iml
-*.ipr
-*.iws
-
-# vscode
-
-.settings/
-.vscode/
-bin/
-.classpath
-.project
-
-# macos
-
-*.DS_Store
-
-# fabric
-
-run/
-
-# java
-
-hs_err_*.log
-replay_*.log
-*.hprof
-*.jfr
-
-**/generated
+.DS_Store

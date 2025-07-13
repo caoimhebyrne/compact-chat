@@ -1,45 +1,39 @@
 {
-  "schemaVersion": 1,
-  "id": "compact-chat",
-  "version": "${version}",
-  "name": "Compact Chat",
-  "description": "Clean up your chat by removing duplicate messages!",
-  "authors": [
-    "Caoimhe Byrne"
-  ],
-  "contact": {
-    "homepage": "https://modrinth.com/mod/compact-chat",
-    "sources": "https://github.com/caoimhebyrne/compact-chat",
-    "issues": "https://github.com/caoimhebyrne/compact-chat/issues"
-  },
-  "license": "MIT",
-  "icon": "assets/compact-chat/icon.png",
-  "environment": "client",
-  "entrypoints": {
-    "client": [
-      "dev.caoimhe.compactchat.CompactChatClient"
+    "schemaVersion": 1,
+    "id": "compact-chat",
+    "version": "${version}",
+    "name": "Compact Chat",
+    "description": "Clean up your chat by removing duplicate chat messages!",
+    "authors": [
+        "Caoimhe Byrne"
     ],
-    "modmenu": [
-      "dev.caoimhe.compactchat.modmenu.CompactChatModMenuIntegration"
-    ]
-  },
-  "mixins": [
-    "compact-chat.mixins.json"
-  ],
-  "depends": {
-    "fabricloader": ">=0.15.0",
-    "minecraft": ">=1.20.6",
-    "java": ">=21",
-    "cloth-config": ">=14.0.126"
-  },
-  "recommends": {
-    "modmenu": ">=10.0.0"
-  },
-  "custom": {
-    "modmenu": {
-      "links": {
-        "modmenu.discord": "https://discord.gg/m73BKShdJR"
-      }
+    "contact": {
+        "homepage": "https://modrinth.com/mod/compact-chat",
+        "sources": "https://github.com/caoimhebyrne/compact-chat",
+        "issues": "https://github.com/caoimhebyrne/compact-chat/issues"
+    },
+    "license": "MIT",
+    "icon": "assets/compact-chat/icon.png",
+    "environment": "*",
+    "entrypoints": {
+        "client": [
+            "dev.caoimhe.compactchat.CompactChatMod"
+        ]
+    },
+    "mixins": [
+        "compact-chat.mixins.json"
+    ],
+    "depends": {
+        "fabricloader": ">=0.16.0",
+        "minecraft": ">=${mcVersionStr}",
+        "java": ">=21",
+        "fabric-api": "*"
+    },
+    "custom": {
+        "modmenu": {
+            "links": {
+                "modmenu.discord": "https://discord.com/invite/YshqVw45FS"
+            }
+        }
     }
-  }
 }
