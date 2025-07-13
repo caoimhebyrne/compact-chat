@@ -1,5 +1,6 @@
 package dev.caoimhe.compactchat.message.content;
 
+import dev.caoimhe.compactchat.config.Configuration;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.PlainTextContent;
 import net.minecraft.text.StringVisitable;
@@ -21,6 +22,10 @@ public class OccurrenceTextContent implements PlainTextContent {
 
     @Override
     public String string() {
+        if (this.occurrences >= Configuration.instance().maximumOccurrences) {
+            return " (" + Configuration.instance().maximumOccurrences + "+)";
+        }
+
         return " (" + this.occurrences + ")";
     }
 

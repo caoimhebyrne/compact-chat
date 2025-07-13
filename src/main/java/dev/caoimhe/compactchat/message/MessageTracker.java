@@ -1,5 +1,7 @@
 package dev.caoimhe.compactchat.message;
 
+import dev.caoimhe.compactchat.config.Configuration;
+
 /**
  * Tracks data associated with a message sent by a user.
  * <p></p>
@@ -22,6 +24,10 @@ public class MessageTracker {
      * Increments the number of times that a message occurred in chat.
      */
     public void incrementOccurrences() {
+        if (this.occurrences == Configuration.instance().maximumOccurrences) {
+            return;
+        }
+
         this.occurrences++;
     }
 }
