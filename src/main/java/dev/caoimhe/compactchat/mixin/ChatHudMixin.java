@@ -16,7 +16,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.List;
 
-@Mixin(ChatHud.class)
+/**
+ * The priority is set to the max value integer to ensure that this mixin is applied as late as possible.
+ * See GitHub issue #23 for more information.
+ */
+@Mixin(value = ChatHud.class, priority = Integer.MAX_VALUE)
 public abstract class ChatHudMixin implements IChatHudExt {
     @Shadow
     @Final
