@@ -8,5 +8,8 @@
     "text.autoconfig.compact-chat.option.ignoreCommonSeparators.@Tooltip": "If enabled, messages containing\n\"------\"and \"======\" won't be\ncompacted.",
 
     "text.autoconfig.compact-chat.option.maximumOccurrences": "Maximum occurrences",
-    "text.autoconfig.compact-chat.option.maximumOccurrences.@Tooltip": "Messages which have been sent over this\namount of times will not be counted anymore.\n\nFor example, if set to 100, anything over\n100 will turn into 100+."
+    "text.autoconfig.compact-chat.option.maximumOccurrences.@Tooltip": "Messages which have been sent over this\namount of times will not be counted anymore.\n\nFor example, if set to 100, anything over\n100 will turn into 100+.",
+
+    "text.autoconfig.compact-chat.option.ignoreFirstCharactersCount": "Ignore first characters count",
+    "text.autoconfig.compact-chat.option.ignoreFirstCharactersCount.@Tooltip": "The number of characters to ignore\nat the start of each message when compacting.\n\nUseful for mods that add timestamps\nto the beginning of messages."
 }
