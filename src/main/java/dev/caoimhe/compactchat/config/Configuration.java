@@ -17,6 +17,10 @@ public class Configuration implements ConfigData {
     @ConfigEntry.Gui.Tooltip
     public int maximumOccurrences = 100;
 
+    @ConfigEntry.BoundedDiscrete(min = 0, max = 100)
+    @ConfigEntry.Gui.Tooltip
+    public int ignoreFirstCharactersCount = 0;
+
     /**
      * Initializes the configuration.
      */
