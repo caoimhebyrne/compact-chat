@@ -22,6 +22,30 @@ all easier to set up.
 
 ![A screenshot of the Minecraft chat, showing compact-chat compacting multiple messages into a single line](.github/screenshot.png)
 
+## Compatibility with other mods
+
+Compact Chat aims to be compatible with other mods, especially those which add timestamps to the start of messages.
+
+By default, Compact Chat will not compact messages which start with a timestamp, but that behavior can be configured
+by adjusting the "Ignore first characters count" setting within the configuration screen (requires
+[ModMenu](https://modrinth.com/mod/modmenu) to open!).
+
+![A screenshot of the Compact Chat configuration screen, showing the "Ignore first characters count" option set to '10'](.github/ignore-first-characters.png)
+
+If this value is set, Compact Chat will ignore the first characters in the message up until the specified length.
+
+For example, with the setting set to `10` and a message like so:
+
+```
+[20:19:00] <caoimheee> hello!
+```
+
+Compact Chat will see it as:
+
+```
+<caoimheee> hello!
+```
+
 ## License
 
 This project is licensed under the [MIT](./LICENSE) license.
