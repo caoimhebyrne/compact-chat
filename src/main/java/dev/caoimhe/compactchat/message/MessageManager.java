@@ -43,15 +43,16 @@ public class MessageManager {
         // We use a string representation of the message to compare it to another text.
         final String message = TextUtil.stripIgnoredComponents(text);
 
-        if (this.shouldIgnore(text, message)) {
+        final MessageTracker tracker = this.messages.computeIfAbsent(message, (v) -> new MessageTracker());
+        final boolean shouldIgnore = this.shouldIgnore(text, message);
+        this.previousMessage = message;
+
+        if (shouldIgnore) {
+            if (tracker.occurrences() == 0) tracker.incrementOccurrences();
             return text;
         }
 
-        final MessageTracker tracker = this.messages.computeIfAbsent(message, (v) -> new MessageTracker());
         tracker.incrementOccurrences();
-
-        // Certain features require us to know the previous message.
-        this.previousMessage = message;
 
         // If the message has only occurred once (i.e. this is the first occurrence of the message), we don't need to
         // do anything, the message can be accepted as is.
@@ -104,7 +105,7 @@ public class MessageManager {
         }
 
         if (Configuration.instance().onlyCompactConsecutiveMessages) {
-            return message.equals(this.previousMessage);
+            return !message.equals(this.previousMessage);
         }
 
         // Common separators used by servers, e.g. Hypixel.
