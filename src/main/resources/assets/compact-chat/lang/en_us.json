@@ -7,6 +7,9 @@
     "text.autoconfig.compact-chat.option.ignoreCommonSeparators": "Ignore common message separators",
     "text.autoconfig.compact-chat.option.ignoreCommonSeparators.@Tooltip": "If enabled, messages containing\n\"------\"and \"======\" won't be\ncompacted.",
 
+    "text.autoconfig.compact-chat.option.commonSeparators": "Common message separators",
+    "text.autoconfig.compact-chat.option.commonSeparators.@Tooltip": "Message separators to ignore when compacting.\nA single character must be repeated multiple\ntimes to count as a separator.",
+
     "text.autoconfig.compact-chat.option.maximumOccurrences": "Maximum occurrences",
     "text.autoconfig.compact-chat.option.maximumOccurrences.@Tooltip": "Messages which have been sent over this\namount of times will not be counted anymore.\n\nFor example, if set to 100, anything over\n100 will turn into 100+.",
 

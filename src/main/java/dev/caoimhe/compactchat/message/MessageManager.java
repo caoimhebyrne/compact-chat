@@ -110,7 +110,8 @@ public class MessageManager {
 
         // Common separators used by servers, e.g. Hypixel.
         if (Configuration.instance().ignoreCommonSeparators) {
-            return message.contains("------") || message.contains("======");
+            return Configuration.instance().commonSeparators.stream().filter(it -> !it.isBlank())
+                .anyMatch(message::contains);
         }
 
         return false;
