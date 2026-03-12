@@ -1,6 +1,8 @@
 package dev.caoimhe.compactchat.message;
 
 import dev.caoimhe.compactchat.config.Configuration;
+import net.minecraft.client.gui.hud.ChatHudLine;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Tracks data associated with a message sent by a user.
@@ -12,12 +14,20 @@ import dev.caoimhe.compactchat.config.Configuration;
  */
 public class MessageTracker {
     private int occurrences = 0;
+    private @Nullable ChatHudLine line = null;
 
     /**
      * @return The number of times the message occurred in chat.
      */
     public int occurrences() {
         return this.occurrences;
+    }
+
+    /**
+     * @return The latest {@link ChatHudLine} for this message, if one exists.
+     */
+    public @Nullable ChatHudLine line() {
+        return this.line;
     }
 
     /**
@@ -29,5 +39,12 @@ public class MessageTracker {
         }
 
         this.occurrences++;
+    }
+
+    /**
+     * Updates the tracked {@link ChatHudLine} for this message.
+     */
+    public void setLine(final @Nullable ChatHudLine line) {
+        this.line = line;
     }
 }

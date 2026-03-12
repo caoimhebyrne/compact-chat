@@ -6,13 +6,15 @@ import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Config(name = "compact-chat")
 public class Configuration implements ConfigData {
     @ConfigEntry.Gui.Tooltip
     public int maximumOccurrences = 100;
+
+    @ConfigEntry.Gui.Tooltip
+    public int maxTrackedMessages = 500;
 
     @ConfigEntry.BoundedDiscrete(min = 0, max = 100)
     @ConfigEntry.Gui.Tooltip

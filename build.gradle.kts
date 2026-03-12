@@ -10,7 +10,7 @@ fun Project.dependencyVersion(name: String, friendlyName: String = name, default
 }
 
 group = "dev.caoimhe"
-version = "3.1.0"
+version = "3.2.0"
 base.archivesName = "compact-chat-${project.name}"
 
 repositories {
