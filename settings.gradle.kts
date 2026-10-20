@@ -9,7 +9,7 @@ pluginManagement {
     }
 
     plugins {
-        val egtVersion = "0.6.8"
+        val egtVersion = "0.7.3"
         id("gg.essential.multi-version.root") version egtVersion
     }
 }
@@ -23,6 +23,8 @@ rootProject.buildFileName = "root.gradle.kts"
 listOf(
     "1.21.1-fabric",
     "1.21.1-neoforge",
+    "26.1-neoforge",
+    "26.1-fabric",
 ).forEach { version ->
     include(":$version")
     project(":$version").apply {

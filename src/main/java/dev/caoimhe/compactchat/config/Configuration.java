@@ -5,8 +5,14 @@ import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
+import net.minecraft.client.gui.screen.Screen;
 
-import java.util.ArrayList;
+// @formatter:off
+//#if MC >= 26.1
+//$$ import me.shedaniel.autoconfig.AutoConfigClient;
+//#endif
+// @formatter:on
+
 import java.util.List;
 
 @Config(name = "compact-chat")
@@ -40,5 +46,17 @@ public class Configuration implements ConfigData {
      */
     public static Configuration instance() {
         return AutoConfig.getConfigHolder(Configuration.class).getConfig();
+    }
+
+    /**
+     * Creates the configuration screen.
+     * Must be called after {@link Configuration#initialize()}.
+     */
+    public static Screen createScreen(Screen parent) {
+        //#if MC >= 26.1
+        //$$ return AutoConfigClient.getConfigScreen(Configuration.class, parent).get();
+        //#else
+        return AutoConfig.getConfigScreen(Configuration.class, parent).get();
+        //#endif
     }
 }

@@ -14,6 +14,9 @@ version = "3.1.0"
 base.archivesName = "compact-chat-${project.name}"
 
 repositories {
+    // The preprocessor resolves the classpath of linked projects (e.g. 26.1-fabric -> 1.21.1-neoforge) using these
+    // repositories, so NeoForge's maven needs to be available to Fabric projects too.
+    maven("https://maven.neoforged.net/releases")
     maven("https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1")
     maven("https://maven.terraformersmc.com")
     maven("https://maven.shedaniel.me")
@@ -34,8 +37,9 @@ dependencies {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
+    val javaVersion = if (platform.mcVersion >= 260100) JavaVersion.VERSION_25 else JavaVersion.VERSION_21
+    sourceCompatibility = javaVersion
+    targetCompatibility = javaVersion
 }
 
 loom {

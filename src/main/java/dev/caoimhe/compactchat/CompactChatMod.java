@@ -2,7 +2,6 @@ package dev.caoimhe.compactchat;
 
 // @formatter:off
 //#if NEOFORGE
-//$$ import me.shedaniel.autoconfig.AutoConfig;
 //$$ import net.neoforged.fml.ModContainer;
 //$$ import net.neoforged.fml.common.Mod;
 //$$ import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
@@ -20,7 +19,7 @@ import org.slf4j.LoggerFactory;
 //$$     public CompactChatMod(final ModContainer modContainer) {
 //$$         modContainer.registerExtensionPoint(
 //$$             IConfigScreenFactory.class,
-//$$             (container, parent) -> AutoConfig.getConfigScreen(Configuration.class, parent).get()
+//$$             (container, parent) -> Configuration.createScreen(parent)
 //$$         );
 //#else
 public class CompactChatMod implements ClientModInitializer {
