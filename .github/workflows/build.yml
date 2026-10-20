@@ -1,32 +1,40 @@
-name: build
-on: [pull_request, push]
+name: Build
+
+on:
+  - pull_request
+  - push
 
 jobs:
-    build:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v4
-            - name: Configure Gradle Cache
-              uses: actions/cache@v4
-              with:
-                  path: |
-                      ~/.gradle/caches
-                      ./gradle/loom-cache
-                  key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-            - name: Validate Gradle Wrapper
-              uses: gradle/actions/wrapper-validation@v4
-            - name: Setup Java
-              uses: actions/setup-java@v4
-              with:
-                  java-version: '21'
-                  distribution: 'zulu'
-            - name: Ensure Gradle Wrapper is executable
-              run: chmod +x ./gradlew
-            - name: Build
-              run: ./gradlew build
-            - name: Upload Build Artifacts
-              uses: actions/upload-artifact@v4
-              with:
-                  name: Artifacts
-                  path: ./**/build/libs/
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Java
+        uses: actions/setup-java@v6
+        with:
+          java-version: '25'
+          distribution: 'temurin'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@3f5f9adaf7d9fecd50b5935e54106014257a94e6 # v6.4.0
+
+      - name: Setup Loom cache
+        uses: actions/cache@v6
+        with:
+          path: .gradle/loom-cache
+          # Attempts to (somewhat) mirror the cache key of gradle/actions/setup-gradle:
+          # https://github.com/gradle/actions/blob/main/docs/setup-gradle.md#cache-key-strategy
+          key: ${{ runner.os }}-gradle-loom-cache-${{ hashFiles('gradle/*.versions.toml', '**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-loom-cache-
+
+      - name: Build
+        run: ./gradlew build
+
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          name: Artifacts
+          path: ./**/build/libs/
